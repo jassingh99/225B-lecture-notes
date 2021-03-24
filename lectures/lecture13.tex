@@ -1,0 +1,47 @@
+\subsection{Poincar\'e-Hopf Theorem}
+
+\begin{conventions}
+    $M^n$ is compact, oriented and $X$ is a vector field on $M$ with isolated (hence finitely many) zeroes. Let $Z(X)$ denote the zero set of $X$.
+\end{conventions}
+
+\begin{definition}
+    For $p \in Z(X)$, pick a small ball $p \in B^n$ with coordinates $x$ such that $x(p) = 0$. Then the $ind(X, p)$, index of $X$ at $p$, is the degree of the map $\partial B^n \longrightarrow \partial S^{n - 1}$ via $x \mapsto \frac{X(x)}{|X(x)|}$. Note that the length here is defined from $B^n \subseteq \R^n$.
+\end{definition}
+
+This is independent of the choice of coordinates via an application of the homework functor.
+
+\begin{theorem}[Poincar\'e-Hopf]
+    $\chi(M) = \sum_{p \in Z(X)} ind(X, p)$
+\end{theorem}
+\begin{corollary}
+    As $\chi(S^2) = 2 \neq 0$, we have the Hairy ball theorem, i.e. that there are no nonvanishing vector fields on $S^2$.
+\end{corollary}
+
+\noindent We shall present two proofs of this theorem.
+\begin{proof}[Proof 1]
+    Our definition is $\chi(M) = L(id) = L(f_\varepsilon)$ for $f_\varepsilon$ a time $\varepsilon$ flow of $X$, $\varepsilon > 0$ small. Note that the fixed points of $f_\varepsilon$ are the zeroes of $X$.
+    
+    From last time, we had local Lefschetz number $L_p(f_\varepsilon)$ for $p \in Z(X)$. By assumption on $X$, these fixed points are isolated so this applies. We therefore have $L(f_\varepsilon) = \sum L_p(f_\varepsilon)$ where
+    \[
+        L_p(f_\varepsilon) = \deg\parens{\frac{f_\varepsilon(x) - x}{|f_\varepsilon(x) - x|}: S^{n - 1} \longrightarrow S^{n - 1}}.
+    \]
+    By Taylor's theorem, $f_\varepsilon(x) - x \approx \varepsilon X(x)$. Hence, $\frac{f_\varepsilon(x) - x}{|f_\varepsilon(x) - x|} \approx \frac{X(x)}{|X(x)|}$. As $\varepsilon \to 0$, this approximation gets better and better. Hence, for sufficiently small $\varepsilon$, these maps have the same degree, so $L_p(f_\varepsilon) = ind(X, p)$.
+\end{proof}
+\begin{proof}[Proof 2]
+    We begin with a slight reformulation of $ind(X, p)$. We first view $X: M \longrightarrow TM$. We claim that $ind(X, p)$ is the local intersection of $I(B^n, X[B^n])$. Here $B^n$ is a sufficiently small closed ball centered at $p$ such that $p$ is the only zero of $X$ in $B^n$. We can shrink $B^n$ enough that the boundaries of $B^n$ and $X[B^n]$ don't intersect. Of course, we identify $M \subseteq TM$ via the 0 section.
+    
+    Indeed, perturb $X$ so that it's transverse to the 0 section. In fact, do this perturbation relative to $\partial B^n$. Now, the fixed points are Lefschetz (similar proof to Morse function in terms of 0 section of cotangent bundle). Also, by the same argument as the local Lefschetz number calculation in terms of degree, assume WLOG $X[B^n] \transverse B^n$ at $p = 0$. Then, calculate the contributions from each transverse intersection point, which will be the same as the index $ind(X, p)$.
+    
+    Globalizing, this means that $\sum ind(X, p) = I(0, X)$. As $X$ is homotopic to 0, this is just $I(0, 0)$. It therefore remains to embed $TM \subseteq M \times M$. in such a way that the 0 section maps to the diagonal, i.e. $0 \longrightarrow \Delta$ via $(x, 0) \mapsto (x, x)$.
+    
+    The key point here is to identify a neighborhood of $T_x M$ with a neighborhood of $x \in M$, which varies smoothly in $x$. The usual way to do this is to use a Riemannian metric $g$ (which always exists). We now use the exponential map $exp: TM \longrightarrow M$, $(x, v) \mapsto exp_x(v)$. This is given locally as a geodesic starting at $x$ in the direction (and magnitude!) of $v$.
+    
+    Alternatively, we can embed $M \subseteq \R^N$ and identify $T_x M \subseteq T_x \R^N = \R^N$. Let $N_x$ be the orthogonal complement of $T_x M$. Let $\varepsilon > 0$ small and consider $D_x = \{|v| < \varepsilon\} \subseteq T_x M$. $M$ can be written locally as a graph of a function $\phi_x: D_x \longrightarrow N_x$. This assignment $\phi_x: D_x \longrightarrow M \subseteq D_x \times N_x = \R^N$ is smooth in $x$. This yields $\coprod_{x \in M} D_x \longrightarrow M \times M$ via $(x, v) \mapsto (x, \phi_x(v))$.
+    
+    Using either of these two methods, we get
+    \begin{align*}
+        \chi(M) &= I(\Delta, \Delta)\\
+        &= I(0, 0)\\
+        &= \sum ind(X, p).
+    \end{align*}
+\end{proof}

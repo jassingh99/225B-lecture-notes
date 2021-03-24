@@ -1,0 +1,51 @@
+\subsection{Winding Numbers}
+
+    This is a further application of degree theory. Recall from complex analysis that the winding number of a complex curve at a point is a rigorous definition of the number of times, counted with sign, that the curve wraps around the point. For instance, the winding number of a circle oriented counterclockwise about its center is 1, and the winding number of a circle wrapped $n$ times around its center is $n$. A common definition of the winding number is to take rays starting at the point in question and computing the signed intersection count of the ray with the curve. With all this in mind, we are led to the following definition.
+    
+    \begin{definition}
+        Let $f: M^n \longrightarrow \R^{n + 1}$ with $M$ compact, boundaryless, and oriented (if we don't want to assume oriented, work mod 2). For $z \in \R^{n + 1} - f[M]$ (such points are generic by Sard's theorem), the winding number $wind(f, z)$ is the degree of the map $M^n \longrightarrow S^n$ via $x \mapsto \frac{f(x) - z}{|f(x) - z|}$. $\frac{f(x) - z}{|f(x) - z|}$ can be viewed as the unit vector pointing from $z$ to $f(x)$, so this is counting (with sign) how often $f$ points in a direction.
+    \end{definition}
+    
+    \begin{theorem}
+        Given $f: M \longrightarrow \R^{n + 1}$ as in the definition, suppose $M = \partial W$ with $W^{n + 1}$ compact and oriented. Let $F: W \longrightarrow \R^{n + 1}$ be a thiccening of $f$, i.e. $\partial F = f$. If $z \in \R^{n - 1} - f[M]$ is a regular value of $F$, then $F^{-1}[z]$ is finite and $wind(f, z) = \#F^{-1}[z]$.
+    \end{theorem}
+    
+    \noindent We present two proofs of the fact.
+    
+    \begin{proof}[Proof 1.]
+        This is similar to the \hyperlink{item:ftalg enhancement}{enhancement to the fundamental theorem of algebra} proven before.
+        
+        Finiteness of $F^{-1}[z]$ is standard, so let it be $\{y_1, \dots, y_k\}$. Take small neighborhoods $D_\varepsilon (y_i) \subseteq W$ disjoint. Let $W' = W - \bigcup D_\varepsilon (y_i)$ and define $\Phi: W' \longrightarrow S^n$ via $x \mapsto \frac{F(x) - z}{|F(x) - z|}$. Thus, $\deg \partial \Phi = 0$, so $wind(F|_{\partial W'}) = 0$. Hence, $wind(f, z) = \sum wind(F|_{\partial D_\varepsilon (y_i)}, z)$. For $\varepsilon$ sufficiently small, $F|_{\partial D_\varepsilon}$ maps diffeomorphically onto its target. The winding number is therefore $\pm 1$ depending on the orientation, so $wind(f, z) = \# F^{-1}[z]$.
+    \end{proof}
+    
+    \begin{proof}[Proof 2.]
+        Take a generic ray $\gamma$ from $z \to z'$ with $|z'| >> 0$. WLOG say that $F, f \transverse \gamma$. The winding number changes by $\pm 1$ when $\gamma$ crosses $f[M]$ generically. A more rigorous treatment of this is in Guillemin and Pollack.
+    \end{proof}
+    
+\subsection{Jordan-Brouwer Separation Theorem}
+
+    \begin{theorem}[Jordan-Brouwer]
+        The complement of a compact, connected hypersurface $M \subseteq \R^{n + 1}$ is has two connected components.
+    \end{theorem}
+    
+    \begin{proof}
+        There are two steps to this proof: showing that there are at most 2 connected components and that there are exactly two connected components.
+        
+        \begin{lemma}[Step 1]
+            There are at most 2 connected components in $\R^{n + 1} - M$
+        \end{lemma}
+        
+        \begin{proof}[Proof of step 1.]
+            Take some $x_0 \in M$. By the implicit function theorem, there is a neighborhood $U \subseteq \R^{n + 1}$ on $x_0$ with some coordinates such that the inclusion $M \cap U \longrightarrow U$ looks like the inclusion of a hyperplane. Let $U^+$ and $U^-$ be the connected components of $U - M \cap U$.
+            
+            Now, let $z \in \R^{n + 1} - M$. Take a ray $z \to x_0$. If this ray does not intersect $M$, then $z$ is connected to $U^+$ or $U^-$. If not, let $z_1$ be the first intersection point of this ray with $M$. As $M$ is connected, there is a path $\gamma: z_1 \to x_0$ in $M$. This path can be deformed (???) to a path $\gamma': z_1 \to x_0$ which only intersects $M$ at the endpoints. Hence, $z$ is connected to $U^+$ or $U^-$ (??concatenating isn't enough as at intersects at $z_1$, so have to push it off more??). Thus, $\R^{n + 1} - M$ has at most two path components, associated to $U^+$ and $U^-$.
+        \end{proof}
+        
+        \begin{lemma}[Step 2]
+            The two components can be distinguished by $wind(i, z)$ with $i: M \longrightarrow \R^{n + 1}$ the inclusion.
+        \end{lemma}
+        
+        \begin{proof}[Proof of step 2.]
+            Indeed, take some arbitrarily short arc $\gamma: z_0 \to z_1$, which intersects $M$ once transversely with $z_0$ connected to $U^-$ and $z_1$ connected to $U^+$. Then letting $wind_2$ be the mod 2 winding number, $wind_2(i, z_0) - wind_2(i, z_1) = 1$. As the mod 2 winding number is locally constant on $\R^{n + 1} - M$ (paths induce homotopies of the unit vector thing), this shows that $U^+$ and $U^-$ necessarily define different path components of $\R^{n + 1} - M$.
+        \end{proof}
+    \end{proof}

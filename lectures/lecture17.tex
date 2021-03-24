@@ -1,0 +1,70 @@
+\hypertarget{item:classification vb}{}
+\subsection{Classification of Vector Bundles}
+\noindent (c.f. Milnor-Stasheff \textit{Characteristic Classes})
+
+\subsubsection{Definitions}
+
+Let $E \longrightarrow M$, $F \longrightarrow N$ be vector bundles. A map between these is a commutative square
+\[
+\begin{tikzcd}
+    E \arrow[d] \arrow[r, "\overline f"] & F \arrow[d]\\
+    M \arrow[r, swap, "f"] & N
+\end{tikzcd}
+\]
+such that $\overline f_p: E(p) \longrightarrow F(f(p))$ is linear.
+
+\noindent If we have
+\[
+\begin{tikzcd}
+    & F \arrow[d, swap, "v.b."]\\
+    M \arrow[r, swap, "f"] & N
+\end{tikzcd}
+\]
+we can construct the pullback vector bundle $f^{-1} F = \{(x, v) \in  M \times F : f(x) = \pi(v)\}$.
+
+\hypertarget{item:universal bundle}{}
+\subsubsection{The Universal Bundle}
+
+Recall the Grassmannian of $k$-planes in $\R^n$, which we denote $Gr(k, n)$. This naturally comes equipped with a rank $k$ vector bundle $\gamma(k, n) \longrightarrow Gr(k, n)$ called the universal bundle. This satisfies $\gamma(k, n)_{W} = W$.
+
+Now, if we fix $k$ and vary $n$, we have
+\[
+\begin{tikzcd}
+    \dots \arrow[r] & \gamma(k, n) \arrow[r] \arrow[d] & \gamma(k, n + 1) \arrow[r] \arrow[d] & \gamma(k, n + 2) \arrow[r] \arrow[d] & \dots\\
+    \dots \arrow[r] & Gr(k, n) \arrow[r] & Gr(k, n + 1) \arrow[r] &yl
+    Gr(k, n + 2) \arrow[r] & \dots
+\end{tikzcd}
+\]
+so we can take the colimit $\gamma(k, \infty) \longrightarrow Gr(k, \infty) = BO(k)$. Note that these are not in general manifolds. Also, the inclusion $\R^n \subseteq \R^{n + 1}$ is always via 0 in the last coordinate.
+
+\subsubsection{Classification}
+
+\begin{theorem}
+    There is a bijection $\Phi: \{\text{rank } k \text{ vector bundles}/M\}/{\cong} \longrightarrow [M, BO(k)]$.
+\end{theorem}
+\begin{proof}[Proof sketch]
+    \begin{enumerate}
+        \item We begin by defining $\Phi$. Let $E \xlongrightarrow{\pi} M$ be a vector bundle of rank $k$. By the Whitney Embedding Theorem, there is an embedding $f: E \longrightarrow \R^N$. We have a map
+        \[
+        \begin{tikzcd}[row sep = tiny]
+            M \arrow[r] & Gr(k, N) \arrow[r, hook] & Gr(k, \infty)\\
+            p \arrow[r, mapsto] & T_p f[E_p]
+        \end{tikzcd}
+        \]
+        The homotopy class of this map is our definition of $\Phi(E \xlongrightarrow{\pi} M)$.
+        
+        \item We note now that there is a serious issue of well definedness in the definition of $\Phi$. This better be independent of the choice of embedding $E \longrightarrow \R^N$. That this works is a feature of the construction of $Gr(k, \infty)$ as a colimit.
+        
+        Indeed, take two embeddings $f_i: E \longrightarrow \R^{N_i}$, $i = 0, 1$. We claim that there is a one parameter family of embeddings $f_t: E \longrightarrow \R^N$, $N >> N_0, N_1$ connecting $f_0$ and $f_1$. Here, we always view inclusions $\R^n \subseteq \R^m$ via 0s in the trailing coordinates. The idea is to start with the straight line homotopy $f_t = (1 - t) f_0 + t f_1$. By the same proof as the Whitney Embedding Theorem, these are all embeddings for $N >> N_0, N_1$.
+        
+        Given such a one parameter family of embeddings, we get a smooth family of maps $\Phi_t$, defined as above using $f_t$. Note that after composing $f: E \longrightarrow \R^{N_i}$ with the inclusion $\R^{N_i} \subseteq \R^N$, the maps $\Phi_i$ are the same as before doing this, as we are mapping into the colimit $Gr(k, \infty)$. Hence, this induces a homotopy $\Phi_0 \sim \Phi_1$, so the homotopy class $\Phi(E \xlongrightarrow{\pi} M)$ is independent of the choice of embedding of $E$ into Euclidean space.
+        
+        \item Now, let $M \xlongrightarrow{g} BO(k)$ with $M$ compact. This can be homotoped so that $\im(g) \subseteq Gr(k, N)$ some $N$. Essentially, we want to project $W \in Gr(k, n + 1)$ to $Gr(k, n)$, which is possible when $W$ is disjoint from the orthogonal complement of $\R^n \subseteq \R^{n + 1}$. Compactness says that this will eventually be possible.
+        
+        Now, by smooth approximation, there is a homotopic and arbitrarily $C^0$ close smooth map $M \xlongrightarrow{h} Gr(k, N)$. Let $\Psi(g) = h^{-1} \gamma(k, N)$ the pullback. This is well defined as the homotopy can be taken to be in the finite portion, so any two homotopic maps induce isomorphic pullbacks. Call this vector bundle $\Psi(g)$.
+        
+        \item We claim therefore that $\Phi$ and $\Psi$ are inverses. Indeed, we show $\Psi \circ \Phi = id$. The other direction is a bit harder.
+        
+        Take some vector bundle $E \longrightarrow M$. $\Phi(E \longrightarrow M)$ is the map $p \mapsto T_p f[E_p]$ for some embedding $f: E \longrightarrow \R^N$. This map has image in $Gr(k, N)$. $\Psi$ is therefore the pullback of $\gamma(k, N)$ along this map. This is nothing more than $\coprod f_p[T_p E_p] \longrightarrow M$. Each fiber is canonically identified with $E_p$, so this is isomorphic to $E \longrightarrow M$.
+    \end{enumerate}
+\end{proof}

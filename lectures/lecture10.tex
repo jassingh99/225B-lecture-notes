@@ -1,0 +1,45 @@
+\noindent We proceed with another application of degree theory.
+
+\subsection{Borsuk - Ulam Theorem}
+
+    \begin{theorem}[Borsuk - Ulam]
+        Let $f: S^n \longrightarrow \R^{n + 1}$ with $0 \notin f[S^n]$ and $f(x) = -f(-x)$. Then $wind(f, 0)$ is odd.
+    \end{theorem}
+    
+    \begin{proof}(?????)
+        Let $\overline f = \frac{f}{|f|}: S^n \longrightarrow S^n$. Then $wind(f, 0) = \deg(\overline f)$, so we seek to compute the mod 2 degree of $\overline f$. We proceed by induction.
+        
+        For $n = 1$, use polar coordinates and believe it. Suppose now that the result holds for some $n \geq 1$. Take our $\overline f : S^{n + 1} \longrightarrow S^{n + 1}$. Let $H^+$ and $H^-$ be the upper and lower hemispheres of $S^{n + 1}$. Take now some $a \in S^{n + 1} - \overline f[H^+]$. Equivalently, $-a \notin \overline f[H^-]$. This induces a partition $\overline f^{-1}[a] = \overline f|_{H^+}^{-1}[a] \coprod \overline f|_{H^-}^{-1}[a]$. Hence, $\#\overline f^{-1}[a] = \#\overline f|_{H^+}^{-1}[a] + \#\overline f|_{H^-}^{-1}[a]$.
+        
+        Now, compose $\overline f$ with an orthogonal projection $\pi: \R^{n + 2} \longrightarrow \R^{n + 1}$ with kernel $\R a$. Then $(\pi \circ \overline f|_{H^+})^{-1}[0] = \overline f|_{H^+}^{-1}[\{-a, a\}]$, which has cardinality $|\overline f^{-1}[a]|$. Hence,
+        \begin{align*}
+            wind(f, 0) &= \#\overline f^{-1}[a]\\
+            &= wind(\pi \circ \overline f, 0)
+        \end{align*}
+        which is odd by induction.
+    \end{proof}
+
+\subsection{More on Intersection Theory}
+
+    \begin{convention}
+        Throughout this section, we will be working with $f: L \longrightarrow N$, $g: M \longrightarrow N$ with $L, M$ compact, all manifolds oriented, and $\dim L + \dim M = \dim N$.
+    \end{convention}
+    
+    \begin{definition}
+        The intersection number was quite asymmetric before, so we define more generally the oriented intersection number of $f$ and $g$ to be $I(f, g)$ as follows. As usual, if we don't want things to be oriented we can take $I_2(f, g)$ to be the mod 2 version.
+        \begin{enumerate}
+            \item Homotope $f, g$ so that $f \transverse g$.
+            \item For each pair $(x, y)$ with $f(x) = g(y)$, assign a sign according to how the direct sum orientation aligns with the decomposition $df_x[T_x L] \oplus dg_y[T_y M] = T_{f(x) = g(y)} N$ (by transversality).
+            \item Sum these orientation numbers.
+        \end{enumerate}
+        For this to make sense, realize that $(f \times g)^{-1}[\Delta]$, $\Delta \subseteq N$ the diagonal, is the set of points $(x, y)$ with $f(x) = g(y)$. Furthermore, $f \transverse g$ iff $f \times g \transverse \Delta$. From here, everything is standard.
+    \end{definition}
+    
+    The oriented intersection number of smooth maps has the following three properties, which we state without proof.
+    \begin{enumerate}
+        \item $I(f, g) = (-1)^{\dim M} I(f \times g, \Delta)$.
+        \item $I(f, g) = (-1)^{\dim M \dim L} I(g, f)$.
+        \item If $f_0 \sim f_1, g_0 \sim g_1$ then $I(f_0, g_0) = I(f_1, g_1)$.
+    \end{enumerate}
+    
+    This provides an alternative proof for why the Möbius band $N$ is not orientable. Indeed, let $\gamma$ be the central band of $N$ and let $\gamma'$ be something homotopic to $\gamma$ which intersects $\gamma$ once (PICTURE). If $N$ were orientable then we could do oriented intersection theory. Then we would have $I(\gamma, \gamma) = - I(\gamma, \gamma)$ by the above facts. However, as $|\gamma \cap \gamma'| = 1$, $I(\gamma, \gamma) = I(\gamma, \gamma') = \pm 1$. Hence, $1 = -1$, a contradiction. Note that this also shows how mod 2 intersection theory cannot ``see" orientation.

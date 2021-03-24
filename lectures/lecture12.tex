@@ -1,0 +1,66 @@
+\subsection{Lefschetz Fixed Point Theory day 2}
+
+\begin{conventions}
+    $M^n$ is compact, oriented. We are interested in fixed points of $f: M \longrightarrow M$
+\end{conventions}
+
+Recall from last time that we had a formula for $\chi(M)$ in terms of the critical points of a Morse function $g: M \longrightarrow \R$. We'll start with a bit more exposition on this. Take a downward gradient vector field $X$ on $M$, i.e. it points in the direction of steepest descent. Flow for a short time $\varepsilon$ to get a diffeomorphism $f: M \longrightarrow M$.
+
+We now seek to compute $L(f) = \chi(M)$. Note that the fixed points of $f$ are exactly the critical points of $g$. Near an index 0 critical point $x$, $X$ looks like uniform contraction onto the critical point. Hence, $L_x(f) = 1$. Near an index 1 critical point, the contraction is not uniform, so $L_x(f) = -1$. Similarly, index 2 critical points look like uniform expansion, and this easily generalizes to index $k$, proving the formula.
+
+\subsubsection{Isolated fixed points not of Lefschetz type}
+
+Let $x$ be an isolated fixed point of $f: M \longrightarrow M$. Let $U$ be an open neighborhood of $x$ such that it is the only fixed point of $f$ in $U$.
+
+\begin{lemma*}
+    There exists a homotopy of $f = f_0$ which is constant on $M - U$ and such that all of the fixed points of $f_1$ are Lefschetz inside of $U$.
+\end{lemma*}
+\begin{proof}
+    This is a typical application of the relative transversality homotopy theorem.
+\end{proof}
+
+Now, if we assume $U = B^n$ some ball, then we can compute the local contribution of $x$ to $L(f)$ as
+\[
+    L_x(f) = \deg\parens{
+        \begin{align*}
+            \phi: \partial B^n &\longrightarrow S^{n - 1}\\
+            z &\mapsto \frac{f(z) - z}{|f(z) - z|}
+        \end{align*}
+    }
+\]
+
+Indeed, when $x = 0$ is Lefschetz and $f(z) = Az$ for some $A$ linear (some infinitessimal calculation using Lefschetzness should allow reduction to this case), then $df_x - id = A - id$ and $\phi: \partial B^n \longrightarrow S^{n - 1}$ is given by $z \mapsto \frac{(A - id)z}{|(A - id)z|}$, which has degree $\pm 1 = sgn(\det(A - id))$.
+
+Hence, after perturbing $f$ to $f_1$, we have $\deg(\phi|_{\partial B^n}) = \sum \deg(\phi_{\partial B_i})$, where the $B_i$ are disjoint balls encapsulating all of the fixed points. These $\deg(\phi_{\partial B_i})$ are the local Lefschetz numbers of $f_1$.
+
+\subsubsection{The Lefschetz fixed point theorem}
+
+\begin{theorem}[Lefschetz Fixed Point Theorem]
+    Let $M$ be compact, oriented and let $f: M \longrightarrow M$. Then
+    \[
+        L(f) = (-1)^{\dim M} \sum_{i = 0}^{\dim M} (-1)^i Tr(f_*: H^i(M) \longrightarrow H^i(M)).
+    \]
+\end{theorem}
+
+Note that in this theorem, it is unclear that the right hand side is even an integer. Also, the $(-1)^{\dim M}$ term appears because we defined $L(f) = I(\Delta, \Gamma_f) = (-1)^{\dim M} I(\Gamma_f, \Delta)$. We omit the proof for now (c.f. Peterson's notes), as the most natural proof uses Poincar\'e duality.
+
+\begin{example}
+    Consider $S^n$ for $n \geq 1$. Then
+    \[
+        H^i(S^n) =
+            \begin{cases}
+                \R & i = 0, n\\
+                0 & \text{otherwise.}
+            \end{cases}
+    \]
+    Applying the Lefschetz Fixed Point Theorem, we have $\chi(S^n) = L(id) = 1 + (-1)^n$.
+    
+    If we instead take some $f: S^n \longrightarrow S^n$ with $\deg(f) = k$, then the induced maps on cohomology are given by
+    \[
+        \begin{tikzcd}
+            f_*: H^0(S^n) \arrow[r, "\cdot 1"] & H^0(S^n)\\
+            f_*: H^n(S^n) \arrow[r, "\cdot k"] & H^n(S^n)
+        \end{tikzcd}
+    \]
+    so $L(f) = 1 + (-1)^n k$.
+\end{example}

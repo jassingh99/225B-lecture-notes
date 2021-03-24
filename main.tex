@@ -1,0 +1,186 @@
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,graphicx,mathtools,tikz,hyperref,yfonts,tikz-cd, subfiles, enumitem, extarrows}
+\usetikzlibrary{positioning}
+
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}{Lemma}[theorem]
+\newtheorem{lemma*}{Lemma}[subsection]
+\newtheorem{proposition}{Proposition}[subsection]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[subsection]
+
+\theoremstyle{definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{definition}
+\newtheorem*{examples}{Examples}
+
+\theoremstyle{definition}
+\newtheorem*{remark}{Remark}
+
+\theoremstyle{definition}
+\newtheorem*{remarks}{Remarks}
+
+\theoremstyle{definition}
+\newtheorem*{convention}{Convention}
+
+\theoremstyle{definition}
+\newtheorem*{conventions}{Conventions}
+
+\DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\nil}{nil}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\ann}{Ann}
+\DeclareMathOperator{\cok}{cok}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\tor}{Tor}
+\DeclareMathOperator{\ext}{Ext}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\trdeg}{tr deg}
+\DeclareMathOperator{\tot}{Tot}
+\DeclareMathOperator{\qf}{qf}
+\DeclareMathOperator{\mor}{Mor}
+\DeclareMathOperator*{\colim}{colim}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\rp}{\R \mathbb P}
+\newcommand{\cp}{\C \mathbb P}
+
+\newcommand{\transverse}{\mathrel{\text{\tpitchfork}}}
+\makeatletter
+\newcommand{\tpitchfork}{%
+  \vbox{
+    \baselineskip\z@skip
+    \lineskip-.52ex
+    \lineskiplimit\maxdimen
+    \m@th
+    \ialign{##\crcr\hidewidth\smash{$-$}\hidewidth\crcr$\pitchfork$\crcr}
+  }%
+}
+\makeatother
+
+\newcommand{\diff}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\parens}[1]{{\left(#1\right)}}
+\newcommand{\bracket}[1]{{\left[#1\right]}}
+\newcommand{\curly}[1]{{\left\{#1\right\}}}
+\newcommand{\pipe}[1]{{\left|#1\right|}}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\begin{document}
+\date{}
+
+ 
+\title{Math 225B Lecture Notes\\
+Prof. Ko Honda\\
+Winter 2020}
+\maketitle
+
+\tableofcontents{}
+
+\newpage
+
+\section{Lecture 1 - 1/6}
+\subfile{lectures/lecture01}
+\newpage
+
+\section{Lecture 2 - 1/8}
+\subfile{lectures/lecture02}
+\newpage
+
+\section{Lecture 3 - 1/10}
+\subfile{lectures/lecture03}
+\newpage
+
+\section{Lecture 4 - 1/13}
+\subfile{lectures/lecture04}
+\newpage
+
+\section{Lecture 5 - 1/15}
+\subfile{lectures/lecture05}
+\newpage
+
+\section{Lecture 6 - 1/17}
+\subfile{lectures/lecture06}
+\newpage
+
+\section{Lecture 7 - 1/22}
+\subfile{lectures/lecture07}
+\newpage
+
+\section{Lecture 8 - 1/24}
+\subfile{lectures/lecture08}
+\newpage
+
+\section{Lecture 9 - 1/27}
+\subfile{lectures/lecture09}
+\newpage
+
+\section{Lecture 10 - 1/29}
+\subfile{lectures/lecture10}
+\newpage
+
+\section{Lecture 11 - 2/3}
+\subfile{lectures/lecture11}
+\newpage
+
+\section{Lecture 12 - 2/5}
+\subfile{lectures/lecture12}
+\newpage
+
+\section{Lecture 13 - 2/12}
+\subfile{lectures/lecture13}
+\newpage
+
+\section{Lecture 14 - 2/13}
+\subfile{lectures/lecture14}
+\newpage
+
+\section{Lecture 15 - 2/14}
+\subfile{lectures/lecture15}
+\newpage
+
+\section{Lecture 16 - 2/19}
+\subfile{lectures/lecture16}
+\newpage
+
+\section{Lecture 17 - 2/20}
+\subfile{lectures/lecture17}
+\newpage
+
+\section{Lecture 18 - 2/21}
+\subfile{lectures/lecture18}
+\newpage
+
+\section{Lecture 19 - 2/24}
+\subfile{lectures/lecture19}
+\newpage
+
+\section{Lecture 20 - 2/26}
+\subfile{lectures/lecture20}
+\newpage
+
+\section{Lecture 21 - 2/28}
+\subfile{lectures/lecture21}
+\newpage
+
+\section{Lecture 22 - 3/2}
+\subfile{lectures/lecture22}
+\newpage
+
+\end{document}

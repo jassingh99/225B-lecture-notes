@@ -1,0 +1,55 @@
+\subsection{Oriented Intersection Numbers}
+
+\subsubsection{More on orientation}
+
+    Let $V = V_1 \oplus V_2$ finite dimensional vector spaces over $\R$. Orientations on any two of these yield orientations on the third satisfying $\mathcal O_V = \mathcal O_{V_1} \times \mathcal O_{V_2}$. This extends in a natural way to any short exact sequence.
+    
+    We will use the following setup a lot, so we define condition $(*)$ to be $f: M \longrightarrow N$, $Z \subseteq N$, $f \transverse Z$.
+    
+    \paragraph{Preimage Orientation.} If we are in condition $(*)$ with all manifolds oriented, then there is an induced orientation of $f^{-1}[Z]$ via the following procedure.
+    
+    Take a complement $V$ of $T_x f^{-1}[Z]$ in $M$, i.e. $V \oplus T_x f^{-1}[Z] = T_x M$. We claim that $f_*: V \longrightarrow f_*[V]$ is an isomorphism. Indeed, if $f_*(v) = 0$ then $v \in T_x f^{-1}[Z]$. Hence, by transversality, we have $f_*[V] \oplus T_{f(x)} Z = T_{f(x)} N$. Now,
+    
+    \begin{enumerate}
+        \item $T_{f(x)} Z$ and $T_{f(x)} N$ are oriented, so we get an induced orientation on $f_*[V]$.
+        \item The isomorphism $f_*: V \longrightarrow f_*[V]$ and the above orientation on $f_*[V]$ induces an orientation on $V$.
+        \item Now, $T_x M$ and $V$ are oriented, so $T_x f^{-1}[Z]$ is oriented.
+    \end{enumerate}
+    
+    One can check that this procedure yields a smoothly varying orientation on the $T_x f^{-1}[Z]$ which is independent of the choice of complement $V$. We shall denote this orientation by $f^* \mathcal O_Z$ or $f^{-1} \mathcal O_Z$.
+    
+    Suppose now that we are in condition $(*)$ with all manifolds oriented and that only $M$ has boundary. The conventions on boundary and preimage orientations yield two orientations on $\partial f^{-1}[Z]$, as this can be written as $\partial(f^{-1}[Z])$ or $(\partial f)^{-1}[Z]$, where $\partial f$ is $f$ restricted to the boundary. (c.f. the boundary version of the \hyperlink{item:transverse homotopy thm}{transverse homotopy theorem}). Indeed, we have
+    
+    \begin{enumerate}
+        \item The boundary orientation on $(f^{-1}[Z], f^* \mathcal O_Z)$.
+        \item The preimage orientation $((\partial f)^{-1}[Z], (\partial f)^* \mathcal O_Z)$.
+    \end{enumerate}
+    
+    To distinguish between the two, we call the first orientation $\partial(f^{-1}[Z])$ and the second $(\partial f)^{-1}[Z]$. Remember that these are the same as submanifolds of $f^{-1}[Z]$. However, their orientations differ via
+    
+    \begin{theorem}
+        $\partial(f^{-1}[Z]) = (-1)^{\codim Z} (\partial f)^{-1}[Z]$.
+    \end{theorem}
+    \begin{proof}
+        $\mathcal O_M = [n, \mathcal O_{\partial M}] = [n, \mathcal O_V, (\partial f)^{-1}[Z]]$. Here, $n$ is the outward pointing normal and $V$ is the complement as in the construction of the preimage orientation. On the other hand, $\mathcal O_M = [\mathcal O_V, \mathcal O_{f^{-1}[Z]}] = [\mathcal O_V, n, \mathcal O_{\partial(f^{-1}[Z])}]$. These are equal, and swapping $\mathcal O_V$ and $n$ requires $\dim V = \codim Z$ swaps.
+    \end{proof}
+
+\subsubsection{Oriented Intersection Numbers}
+
+    \begin{conventions}
+        We denote the following by condition $(**)$. $f: M \longrightarrow N$, $Z \subseteq N$ a submanifold, all manifolds oriented and boundaryless, $M$ compact, and $\dim M + \dim N = \dim Z$. Guillemin and Pollack denote this as being appropriate for intersection theory.
+    \end{conventions}
+    
+    We are finally at the point where we can try to rigorously study the intersection number of $f$ and $Z$, which was our plan since we defined transversality. Indeed, we define the intersection number $I(f, Z)$ as follows.
+    
+    \begin{definition}
+        In condition $(**)$, we define $I(f, Z)$ as follows.
+        
+        \begin{enumerate}
+            \item Take a smooth homotopy $f \sim g$ with $g \transverse Z$.
+            \item $g^{-1}[Z]$ is a submanifold by transversality. By the complemantary dimension assumption, $\dim g^{-1}[Z] = 0$. As $M$ is compact, $g^{-1}[Z]$ is finite.
+            \item $g^{-1}[Z]$ can be given the preimage orientation. As it consists of isolated points, this consists of a choice of $\pm 1$ per point in $g^{-1}[Z]$. We now define $I(f, Z)$ as the sum of these signs, which makes sense by finiteness of $g^{-1}[Z]$.
+        \end{enumerate}
+    \end{definition}
+    
+    Of course, we must show that this definition is independent of the choice of homotopic replacement map $g$. Indeed, for $g_0 \sim g_1 : M \longrightarrow N$ with both transverse to $Z \subseteq N$, we claim that $I(g_0, Z) = I(g_1, Z)$. Indeed, let $G: [0, 1] \times M \longrightarrow N$ witness this homotopy. By the relative version of the transverse homotopy theorem, we may assume that $G \transverse Z$ without changing $G(i, -) = g_i$ for $i= 0, 1$. Consider therefore $G^{-1}[Z]$. This is a one dimensional manifold with boundary. Also, assuming $Z$ to be closed (which we usually mean), compactness of $I \times M$ implies that this is a compact one dimensional manifold with boundary. By the classification of compact one manifolds, which we do not prove, the only connected compact one manifolds are $S^1$ and $I$. Thus, $\partial(G^{-1}[Z])$ comes in pairs of points with opposite orientations, so the signed intersection count $\# \partial(G^{-1}[Z]) = 0$. As shown before, this implies that $\# (\partial G)^{-1}[Z] = 0$, and this is just $\#g_1^{-1}[Z] - \#g_0^{-1}[Z] = I(g_1, Z) - I(g_0, Z)$. 

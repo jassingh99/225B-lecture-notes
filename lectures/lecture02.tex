@@ -1,0 +1,30 @@
+\subsection{Transversality day 1}
+
+\begin{definition}
+    Let $f_i: M_i \longrightarrow N$, $i = 1, 2$. We say that $f_1$ and $f_2$ are transverse (and write $f_1 \transverse f_2$) if for all $(x_1, x_2) \in M_1 \times M_2$ such that $f_1(x_1) = f_2(x_2)$ we have $T_{f_i(x_i)} = (f_1)_*[T_{x_1} M_1] + (f_2)_*[T_{x_2} M_2]$.
+    
+    \noindent Being transverse to a submanifold means being transverse to the inclusion map.
+\end{definition}
+
+\begin{examples}
+    \begin{enumerate}
+        \item Let $Y = \{x = 0\}, X = \{y = 0\} \subseteq \R^2$. Then $X \cap Y = \{(0, 0)\}$ and $X \transverse Y$.
+        \item Let $X = \{y = 0\}, Y = \{y = x^2\} \subseteq \R^2$. Then $X \cap Y = \{(0, 0)\}$ but $X$ and $Y$ do not intersect transversely.
+    \end{enumerate}
+\end{examples}
+
+\begin{theorem}
+    Let $f: M^m \longrightarrow N^n$ be transverse to some $Z \subseteq N$. Then $f^{-1}[Z]$ is a submanifold of $M$. Furthermore, the codimension of $Z$ in $Y$ equals the codimension of $f^{-1}[Z]$ in $M$.
+\end{theorem}
+\begin{proof}
+    Given $p \in Z$ we can take local coordinates $x_1, \dots, x_n$ on $p \in U \subseteq N$ open satisfying $Z \cap U = \{x_{k + 1} = \dots = x_n = 0\}$ by the implicit function theorem. Here, $k = \dim Z$. Let $g: U \longrightarrow \R^{n - k}$ have coordinates $(x_{k + 1}, \dots, x_n)$. By transversality of $f$ and $Z$, this map is a submersion. Hence, $f^{-1}[Z \cap U] = (g \circ f)^{-1}[0]$ is a submanifold. This locally equips $f^{-1}[Z]$ with a smooth manifold structure of codimension $n - k = \codim Z$. Being a manifold is a local property, so we are done.
+\end{proof}
+
+Here's the plan from here. Take $f: M \longrightarrow N$, $Z \subseteq N$ a submanifold. We seek to ``perturb" $f$ into $f'$ such that $f' \transverse Z$. If we have complementary dimensions $\dim M + \dim Z = \dim Z$ and if $M$ is compact, we can try to count the total intersection number of $f'$ and $Z$, which will hopefully be an invariant of $f$ and $Z$. Of course, doing this literally is hopeless. Take example 2 above of the parabola intersecting the $x$-axis. Moving the parabola slightly up yields no intersection, but doing it downwards slightly yields 2 intersections. However, using orientations we will see that the leftmost intersection can be given a positive sign, and the rightmost one can be given a negative sign. Then the signed count becomes $1 - 1 = 0$. This also suggests that we can view this as a mod 2 invariant. We begin this program with the following.
+
+\begin{theorem}\hypertarget{item:thm 2.2}{}
+    Suppose $F: M \times S \longrightarrow N$ is transverse to some $Z \subseteq N$. Here, we are interpreting $S$ as a parameter space. Then for almost all $s \in S$, $f_s = F(-, s)$ is transverse to $Z$.
+\end{theorem}
+\begin{proof}
+    We have $F^{-1}[Z] \subseteq M \times S$ a submanifold. Consider the projection $\pi: M \times S \longrightarrow S$. Let $\widetilde{\pi}$ be the restriction of $\pi$ to $F^{-1}[Z]$. By Sard's theorem, almost every $s \in S$ is a regular value of $\widetilde \pi$. Take such an $s \in S$. Let $(x, s) \in \widetilde{\pi}^{-1}[s]$. Then $T_{(x, s)} M \times S = T_x M + T_{(x, s)} F^{-1}[Z]$, as $\widetilde{\pi}_*[T_{(x, s)} F^{-1}[Z]] = T_s S$. Hence, $F_*[T_{(x, s)} M \times S] = (f_s)_*[T_x M] + F_*[T_{(x, s)} F^{-1}[Z]]$, so $F_*[T_{(x, s)} M \times S] + T_{F(x, s)} Z \subseteq (f_s)_*[T_x M] + T_{F(x, s)} Z$. Of course, $T_{F(x, s)} Z = T_{f_s(x)} Z$ and $F_*[T_{(x, s)} M \times S] + T_{F(x, s)} Z = T_{F(x, s)} N$ by assumption. Hence, $f_s \transverse Z$ for any such $s$.
+\end{proof}

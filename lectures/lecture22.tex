@@ -1,0 +1,41 @@
+\subsection{Poincar\'e Dual of a Submanifold}
+
+Recall that we had the cohomology ring $H^*(M) = \bigoplus H^i(M)$ with multiplication $[\alpha] \otimes [\beta] \mapsto [\alpha \wedge \beta]$. Now, let $M^n$ be a compact manifold without boundary and $Y^k$ a compact submanifold of $M$ without boundary.
+
+\begin{definition}
+    The Poincar\'e dual of $Y$ is the cohomology class $PD(Y) = \eta_Y \in H^{n - k}(M)$ such that $\int_Y i^* \omega = \int_M \omega \wedge \eta_Y$. Here, $i: Y \longrightarrow M$ is the inclusion, so $i^* \omega = \omega|_Y$. In other words, the Poincar\'e dual is characterized by $\int_Y \omega|_Y = \int_M \omega \wedge \eta_Y$.
+\end{definition}
+
+Note that such a class exists and is unique by Poincar\'e duality. Indeed, $H^k(M) \longrightarrow \R$ via $\omega \mapsto \int_Y i^* \omega$ is a linear functional, so corresponds to a $\eta_Y \in H^{n - k}(M)$ via Poincar\'e duality.
+
+\begin{theorem}
+    Let $N(Y) \longrightarrow Y$ be the normal bundle of $Y$, which is diffeomorphic to some neighborhood of $Y$ in $M$. Then the Poincar\'e dual of $Y$ and the Thom class of $N(Y) \longrightarrow Y$ can be represented by the same element, i.e. are cohomologous. In particular, there exists a representative of $\eta_Y$ which is supported on any small tubular neighborhood of $Y$.
+\end{theorem}
+\begin{examples}
+    \begin{enumerate}
+        \item Consider first $Y = *$ a point in $M^n$. Then $\eta_Y$ is a bump $n$-form on $M$, which is supported on a small ball about $*$ with $\int \eta_Y = 1$. Indeed, the map $H^0(M) \longrightarrow \R$ taking $f = c \mapsto \int_M \eta \cdot c = c$. (Here we assumed connectedness of $M$).On the other hand, $f = c \mapsto \int_* c = c$, so this is indeed the Poincar\'e dual.
+        
+        \item Take $M = T^2$ and $Y$ some circle around the meat. Then $N(y) = Y \times \R$ and $PD(Y)$ is a one form $f(t) dt$ which is compactly supported and has $\int_\R f(t) dt = 1$.
+    \end{enumerate}
+\end{examples}
+\begin{proof}
+    Let $j: N(Y) \longrightarrow M$ be the inclusion and $\Phi$ the Thom class of $N(y) \longrightarrow Y$. Now, for $\omega$ a closed $k$ form on $M$, we claim that $\int_M \omega \wedge j_* \Phi = \int_Y i^* \omega$. Here, $j_*$ is the extension by 0. This will indeed show that $j_* \Phi$ is the Poincar\'e dual of $Y$.
+    
+    We certainly have $\int_M \omega \wedge j_* \Phi = \int_{N(Y)} \omega \wedge \Phi$. Furthermore, $N(Y) \xlongrightarrow{\pi} Y \xlongrightarrow{i} N(Y)$ are homotopy inverses (here, $i$ is the inclusion/0 section). Hence, $\omega = \pi^* i^* \omega + d\lambda$, i.e. these forms are cohomologous. Thus,
+    
+    \begin{align*}
+        \int_{N(Y)} \omega \wedge \Phi &= \int_{N(Y)} (\pi^* i^* \omega + d \lambda) \wedge \Phi\\
+        &= \int_{N(Y)} \pi^* i^* \omega \wedge \Phi + \int_{N(Y)} d\lambda \wedge \Phi\\
+        &= \int_{N(Y)} \pi^* i^* \omega \wedge \Phi\\
+        &= \int_Y o^* \omega \wedge \pi_* \Phi\\
+        &= \int_Y i^* \omega
+    \end{align*}
+\end{proof}
+
+We now return to discuss transversality some more. Indeed, let $Y, Z \subseteq M^n$ with $Y \transverse Z$ and all three manifolds compact, oriented, boundaryless. Then one can see that $N(Y \cap Z) = N(Y)|_{Y \cap Z} \oplus N(Z)|_{Y \cap Z}$. Hence,
+\begin{align*}
+    \Phi(N(Y \cap Z)) &= \Phi(N(Y)|_{Y \cap Z} \oplus N(Z)|_{Y \cap Z})\\
+    &= \Phi(N(Y)|_{Y \cap Z}) \wedge \Phi(N(Z)|_{Y \cap Z})
+\end{align*}
+
+We know, by the above theorem, that the Thom class of the normal bundle represents the Poincar\'e dual of the submanifold. Hence, we have the formula $\eta_{Y \cap Z} = \eta_Y \wedge \eta_Z$. In the context of the cohomology ring, this tells us that taking the product is the same as intersecting. Unfortunately, this is imperfect as not all cohomology classes come from submanifolds.

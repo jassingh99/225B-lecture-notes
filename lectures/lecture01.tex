@@ -1,0 +1,44 @@
+\subsection{Sard's Theorem}
+Sard's theorem is the main technical lemma to make differential topology work.
+
+\begin{theorem}
+    Let $f: M \longrightarrow N$. Then the set of critical values of $f$ has measure 0 in $N$.
+\end{theorem}
+
+Of course, this is meaningless until we defined what ``measure 0'' means on a manifold. This is much easier than defining a measure on a manifold, as the standard approach of working by patches will not be invariant under coordinate change. In fact, a change of coordinates results in multiplying the measure by a positive function. However, for the specific case of measure 0 sets, this issue does not occur.
+
+\begin{definition}
+    A subset $S \subseteq N$ has \emph{measure zero} if there exists some countable atlas $\{(\phi_i, U_i)\}$ such that for all $\varepsilon > 0$ we have that $\phi_i[U \cap S]$ can be covered by a countable union of rectangles with total volume less than $\varepsilon$. In other words, each $\phi_i[U_i \cap S]$ has measure 0 under the Lebesgue measure.
+\end{definition}
+
+Note that via laziness, we will begin to identify patches with their images in Euclidean space. Under this regime, we can for instance say that $S \subseteq N$ has measure 0 if $S$ can be covered by a countable union of rectangles. Precisely, a rectangle means the preimage of a rectangle (contained in $\phi[U]$) under some chart $\phi$.
+
+\begin{remarks}
+    \begin{enumerate}
+        \item $S \subseteq N$ has measure 0 iff it can be covered by a countable union of rectangles with total volume arbitrarily small. Indeed, cover each $U_i$ by rectangles of total volume less than $\varepsilon / 2^i$. Then these collect to a countable cover of $S$ by rectangles with total volume less than $\sum \varepsilon / 2^i = \varepsilon$.
+        \item Nonempty open subsets of $\R^n$ have positive measure. Hence, Sard's theorem implies that the set of regular values is dense in $N$.
+    \end{enumerate}
+\end{remarks}
+
+\begin{proof}
+    It suffices to prove Sard's theorem on Euclidean space via the existence of a countable atlas and the standard $\varepsilon / 2^i$ trick. Indeed, let $f: \R^m \longrightarrow \R^n$. We will prove the case $n = 1$. See \textit{Milnor} for a full proof.
+    
+    Define now $C_k = \{p \in \R^n : \text{all partials of order up to } k \text{ vanish at } p\}$. Note that $C_1$ consists of all points on which all $df$ is 0. As we are assuming $f: \R^m \longrightarrow \R$, this tells us that $f[C_1]$ is the set of critical values of $f$. Furthermore, observe that $C_1 \supseteq C_2 \dots$.
+    
+    We proceed by induction on $m$. This result is clear for $m = 0$. Now suppose that it holds for all smooth maps $\R^{m - 1} \longrightarrow \R$. We proceed in three steps.
+    
+    \begin{enumerate}
+        \item $f[C_1 - C_2]$ has measure 0.
+        \item $f[C_k - C_{k + 1}]$ has measure 0.
+        \item $f[C_k]$ has measure 0 for $k \geq m$.
+    \end{enumerate}
+    
+    \noindent
+    These together will indeed imply that $f[C_1]$ has measure 0.
+    
+    \begin{enumerate}
+        \item Let $p \in C_1 - C_2$. Then we claim that there exists some neighborhood $p \in V$ such that $f[(C_1 - C_2) \cap V]$ has measure 0. By countable addivity, this is sufficient. Note that by assumption, we have $\frac{\partial f}{\partial x_i}(p) = 0$ for all $i$ and some $\frac{\partial^2 f}{\partial x_i \partial x_j}(p) \neq 0$. WLOG say $i = 1$. Then consider the map $h:\R^m \longrightarrow \R^m$ via $(x_1, \dots, x_m) \mapsto \left(\frac{\partial^2 f}{\partial x_1 \partial x_j}, x_2, \dots, x_m \right)$. Consider these to be new coordinates $(\widetilde{x_1}, \widetilde{x_2}, \dots, \widetilde{x_m}) = \left(\frac{\partial^2 f}{\partial x_1 \partial x_j}, x_2, \dots, x_m \right)$. Furthermore, we have that $dh(p)$ is invertible. Then by the inverse function theorem, $h$ restricts to a diffeomorphism $h: V \longrightarrow V'$, $p \in V$. The set of critical values of $f|_V$ is therefore equal to the set of critical values of $f|_V \circ h^{-1}$ as this is a diffeomorphism. If $y \in \R$ is a critival value of $f \circ h^{-1}$, it is also a critical value of $(f \circ h^{-1})_{\{\widetilde{x_1} = 0\}}$. The set of critical values of this last function has measure 0 by induction and we are done.
+        \item Same as 1.
+        \item Let $p \in C_k$ for $k \geq m$. In local coordinates, view $f: \bracket{-\frac{1}{2}, \frac{1}{2}}^m \longrightarrow \R$. Apply Taylor's theorem to get $f(x + h) = f(x) + R(x, h)$ with $|R(x, h)| \leq c |h|^{k + 1}$, $c > 0$. This holds for $x \in \bracket{-\frac{1}{2}, \frac{1}{2}}^m$ and $|h| < \delta$ small.  Fix some $\delta$ small and pick a cube $Q$ of width $\delta$ containing $p$. Then the volume of $Q$ is $\delta^m$. Hence, $\mu(f[Q]) \leq c \delta^{k + 1}$ by Taylor's theorem. Hence, the total measure is $\leq c \delta^{k + 1}/\delta^m$. As $k \geq m$, this tends to zero as $\delta \to 0$.
+    \end{enumerate}
+\end{proof}

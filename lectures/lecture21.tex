@@ -1,0 +1,112 @@
+We begin with a continuation of the proof of Poincar\'e duality from last time. Indeed, we now need only show
+
+\begin{lemma*}
+    There is a commutative (up to signs) diagram
+    \[
+    \begin{tikzcd}[column sep = small]
+        \dots \arrow[r] & H^i(U \cup V) \arrow[r]\arrow[d] & H^i(U) \oplus H^i(V) \arrow[r]\arrow[d] & H^i(U \cap V) \arrow[r]\arrow[d] & H^{i + 1}(U \cup V) \arrow[r]\arrow[d] & \dots\\
+        \dots \arrow[r] & H_c^{n - i}(U \cup V)^* \arrow[r] & H_c^{n - i}(U)^* \oplus H_c^{n - i}(V)^* \arrow[r] & H_c^{n - i}(U \cap V)^* \arrow[r] & H^{i + 1}(U \cup V)^* \arrow[r] & \dots
+    \end{tikzcd}
+    \]
+    where the vertical maps are the usual integration maps.
+\end{lemma*}
+By induction, many of these maps are isomorphisms, so this plus the 5 lemma yields the result.
+\begin{proof}
+    We first prove commutativity of the first square. The second is similar.
+    
+    Let $\omega \in H^i(U \cup V)$. We have
+    \[
+    \begin{tikzcd}
+        \omega \arrow[d, mapsto]\\
+        \parens{\eta \mapsto \int_{U \cup V} \omega \wedge \eta} \arrow[r, mapsto] & \parens{\zeta \mapsto \int_U \omega \wedge \zeta}
+    \end{tikzcd}
+    \]
+    and the $V$ coordinate is similar. For the other path, we have
+    \[
+    \begin{tikzcd}
+        \omega \arrow[r, mapsto] & j_U^* \omega \arrow[d, mapsto]\\
+        & \parens{\zeta \mapsto \int_U j_U^* \omega \wedge \zeta}
+    \end{tikzcd}
+    \]
+    in the $U$ coordinate. Hence, the first square commutes.
+    
+    For the third square, we have to understand the connecting homomorphisms. Recall
+    \[
+    \begin{tikzcd}
+        0 \arrow[r] & \Omega^i(U \cup V) \arrow[r] & \Omega^i(U) \oplus \Omega^i(V) \arrow[r] & \Omega^i(U \cap V) \arrow[r] & 0
+    \end{tikzcd}
+    \]
+    Take $\{\rho_U, \rho_V\}$ a partition of unity subordinate to $\{U, V\}$. Then as $\rho_U + \rho_V = 1$, $d\rho_U + d\rho_V = 0$. Now, let $\omega \in \Omega^i(U \cap V)$ closed. Then the connecting homomorphism is defined by
+    \[
+    \begin{tikzcd}
+        & (\rho_V \omega, - \rho_U \omega) \arrow[d, mapsto]& \omega \arrow[l, mapsto]\\
+        d^*\omega = d \rho_U \wedge \omega|_{U \cap V} & (d \rho_V \wedge \omega, -d \rho_U \wedge \omega) \arrow[l, mapsto]
+    \end{tikzcd}
+    \]
+    
+    In the other direction, we had
+    \[
+    \begin{tikzcd}
+        0 & \Omega_c^i(U \cup V) \arrow[l] & \Omega_c^i(U) \oplus \Omega_c^i(V) \arrow[l] & \Omega_c^i(U \cap V) \arrow[l] & 0 \arrow[l]
+    \end{tikzcd}
+    \]
+    Take $\zeta \in \Omega_c^i(U \cup V)$ closed. The connecting homomorphism is given by
+    \[
+    \begin{tikzcd}
+    \zeta \arrow[r, mapsto] & (\rho_U \zeta, \rho_V \zeta) \arrow[d, mapsto]\\
+    & (d \rho_U \wedge \zeta, d \rho_V \wedge \zeta) \arrow[r, mapsto] & d_*\omega = d \rho_U \wedge \zeta|_{U \cap V}
+    \end{tikzcd}
+    \]
+    
+    Hence, to prove commutativity of the third square, take some $\omega \in H^i(U \cap V)$ and compute
+    \[
+    \begin{tikzcd}
+        \omega \arrow[d, mapsto]\\
+        \parens{\eta \mapsto \int_{U \cap V} \omega \wedge \eta} \arrow[r, mapsto] & \parens{\zeta \mapsto d_* \zeta \mapsto \int_{U \cap V} \omega \wedge d \rho_U \wedge \zeta}
+    \end{tikzcd}
+    \]
+    \[
+    \begin{tikzcd}
+        \omega \arrow[r, mapsto] & d^* \omega = d \rho_V \wedge \omega \arrow[d, mapsto]\\
+        & \parens{\zeta \mapsto \int_{U \cap V} d\rho_V \wedge \omega \wedge \zeta}
+    \end{tikzcd}
+    \]
+    As $d \rho_U + d \rho_V = 0$, these two paths are off by a sign.
+\end{proof}
+
+\subsection{Compact Vertical Cohomology}
+
+Let $E \xlongrightarrow{\pi} M$ be a vector bundle of rank $n$. Define $\Omega_{cv}^i(E) = \{\omega \in \Omega^i(E) : \forall K \subseteq M \text{ compact, } \pi^{-1}[K] \cap Supp(\omega) \text{ is compact}\}$. These forms are called compact vertical, and are said to have compact support in the vertical direction. Note that in particular, taking $K = \{p\}$, $Supp(\omega) \cap E_p$ is compact.
+
+\begin{remark}
+    We can view a compact vertical form $\omega \in \Omega_{cv}^i(E)$ as a form on the Thom space $\tau(E)$. This isn't really rigorous since the Thom space need not be a manifold.
+\end{remark}
+
+Take now a local trivialization $U \times \R^n$ with coordinates $(x, t_1, \dots, t_n)$. Elements of $\Omega_{cv}^i(U \times \R^n)$ can be written as sums of $\pi^* \phi f(x, t) dt_I$ with $f(x, -)$ having compact support. Here, $\pi: U \times \R^n \longrightarrow U$ and $\phi \in \Omega^*(U)$. Note that $I = \emptyset$ is allowed here. As before, we have a map
+\[
+    \pi_*: \pi^* \phi f(x, t) dt_I \mapsto
+    \begin{cases}
+        0 & |I| < n\\
+        \phi \int_{\R^n} f(x, t) dt_I & |I| = n
+    \end{cases}
+\]
+HW: This is well defined.
+
+Fact. $\pi_*$ commutes with $d$, so it induces a map $\pi_*: H_{cv}^i(E) \longrightarrow H^{i - n}(M)$. Also, by the Poincar\'e lemma, $\pi_*: H_{cv}^i(U \times \R^n) \xlongrightarrow{\sim} H^{i - n}(U)$.
+
+\begin{theorem}[Thom isomorphism]
+    If $M$ admits a finite good cover $\{U_\alpha\}$ such that each $\pi^{-1}[U_\alpha]$ is trivial, then $\pi_*: H_{cv}^i(E) \xlongrightarrow{\sim} H^{i - n}(M)$.
+\end{theorem}
+\begin{proof}
+    This is similar to before (PD is a local statement).
+\end{proof}
+
+\begin{definition}
+    The Thom class of a vector bundle $E \longrightarrow M$ is the class $\Phi \in H_{cv}^n(E)$ such that $\pi_* \Phi = 1 \in H^0(M)$. The inverse of $\pi_*$ is called the Thom isomorphism $\tau: H^j(M) \longrightarrow H_{cv}^{j + n}(E)$. Observe that $\pi_*(\pi^* \omega \wedge \Phi) = \omega \wedge 1$, so $\tau(\omega) = \pi^* \omega \wedge \Phi$.
+\end{definition}
+
+\noindent \textbf{Facts.}
+\begin{enumerate}
+    \item $\Phi$ is the unique cohomology class in $H_{cv}^n$ which restricts to a generator of $H_c^n(F)$ for each fiber $F$. A family of volume forms on $E_p$ with integral 1 ``sweeps out" to $\Phi$.
+    \item There exists a representative of $\Phi$ such that on $\pi^{-1}[U] \cong U \times \R^n$, $\Phi = f(|t|) dt_1 \wedge \dots \wedge dt_n$, with $f(|t|)$ a radially symmetric bump function.
+\end{enumerate}

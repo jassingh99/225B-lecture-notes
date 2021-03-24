@@ -1,0 +1,84 @@
+\subsection{More de Rham Theory}
+(c.f. Bott and Tu ch. 1)
+
+Recall the de Rham complex $\Omega^*$ of a manifold $M$, $\Omega^i M = \Gamma(\bigwedge^i T^* M, M)$. The cohomology of this complex was $H^*(M)$, which was a contravariant functor $\textbf{SmMan}^{op} \longrightarrow \R\textbf{-Mod}$. Today, we do a variant of this called compactly supported cohomology.
+
+Recall that the support of $\omega \in \Omega^i(M)$ is $Supp(\omega) = \overline{\{x \in M : \omega(x) \neq 0\}}$. We therefore let $\Omega_c^i(M) = \{\omega \in \Omega^i(M) : Supp(\omega) \text{ compact}\}$. Observe that the differential of $\Omega^*$ restricts to $d: \Omega_c^i(M) \longrightarrow \Omega_c^{i + 1} M$. This new cochain complex is denoted $\Omega_c^*$, and its cohomology is denoted $H_c^*$ (compactly supported cohomology).
+
+\begin{remarks}
+    \begin{enumerate}
+        \item If $M$ is compact then $\Omega_c^*(M) = \Omega^*(M)$.
+        \item $H_c^*$ is not functorial, as the pullback of a compactly supported form need not be compactly supported. Indeed, take $M \longrightarrow *$ for $M$ not compact, and let $f$ be the 0-form (smooth function) on $*$ which is constant at 1. Then the pullback of $f$ to $M$ is the constant function at 1, which is not compactly supported
+    \end{enumerate}
+\end{remarks}
+We can remedy (2) in the following ways.
+
+\begin{enumerate}[label = (\Alph*)]
+    \item Restrict the morphisms in \textbf{SmMan} to only include proper maps. The preimage of a compactly supported form under a proper map is, of course, compactly supported.
+    \item (The one we use) Observe that $H_c^*$ is a covariant functor from the poset of open sets of $M$.
+\end{enumerate}
+
+To expound on (B) a bit, let $U \xlongrightarrow{f} V$ be an embedding with $\dim U = \dim V$. Then $f_*: \Omega_c^i(U) \longrightarrow \Omega_c^i(V)$ can be defined by taking $\omega$ to its extension via 0 outside of $U$. This will be smooth as $\omega$ has compact support inside of $U$. Of course, we really mean the extension of $(f^{-1})^* \omega \in \Omega_c^i(f[U])$, but who cares. This is easily seen to be a map of cochain complexes and therefore induces a map on cohomology.
+
+As we would hope, there is a covariant analog of Mayer-Vietoris for compactly supported cohomology. Indeed, let $M = U \cup V$ be an open cover. Then we have
+\[
+\begin{tikzcd}
+    U \cap V \arrow[r, "i_U", shift left] \arrow[r, "i_V",swap, shift right] & U \coprod V \arrow[r, "j"] & M
+\end{tikzcd}
+\]
+
+\begin{lemma*}
+    There exists a short exact sequence of cochain complexes going the wrong way.
+    \[
+    \begin{tikzcd}
+        0 \arrow[r] & \Omega_c^i(U \cap V) \arrow[r, "\parens{(i_U)_*, -(i_V)_*}"] &[3em] \Omega_c^i(U) \oplus \Omega_c^i(V) \arrow[r, "j_*"] & \Omega_c^i(M) \arrow[r] & 0
+    \end{tikzcd}
+    \]
+    Here, $j_*$ really means $(j_U)_* \oplus (j_V)_*$, where $j = j_U \coprod j_V$.
+\end{lemma*}
+\begin{proof}
+    We check exactness at $\Omega_c^i(M)$ and the rest is homework. Indeed, let $\eta \in \Omega_c^i(M)$. Take a partition of unity $\{\rho_U, \rho_V\}$ subordinate to $\{U, V\}$. Then let $\alpha = \rho_U \eta \in \Omega_c^i(U)$ and $\beta = \rho_V \eta \in \Omega_c^i(V)$. Then $\eta = \alpha + \beta$.
+\end{proof}
+
+\subsubsection{Poincar\'e Lemma}
+
+Consider the projection map $\pi: M \times \R \longrightarrow M$. We will define a map $\pi_*: \Omega_c^i(M \times \R) \longrightarrow \Omega_c^{i - 1}(M)$ called the vertical integration map. This notation is overloaded with the pushforward, but fuck it.
+
+Apply the homework functor to prove that every form on $M \times \R$ is a linear combination of forms of type
+\begin{enumerate}[label = (\Alph*)]
+    \item $(\pi^* \phi) f(x, t)$, $\phi \in \Omega^i(M)$, $f(x, t) \in \Omega^0(M \times \R)$
+    \item $\pi^* \phi \wedge f(x, t) dt$
+\end{enumerate}
+
+We called $\pi_*$ the vertical integration map, so let's put our money where our mouth is. Indeed, to define $\pi_*$, we send forms of type (A) to 0, as there is nothing vertical ($\R$-direction) to integrate. Forms of type (B) are sent to $\phi \int_\R f(x, t) dt$. This makes sense as the domain of $\pi_*$ was assumed to be the compactly supported forms. Also note that a form has many representations as a linear combination of forms of type (A) and (B), but the map is independent of this. We refer to $\pi_*$ as ``integrating out the fibers" or ``integrating out the $dt$ direction".
+
+By homework, $\pi_*$ is a chain map. Hence, we get an induced map on cohomology $H_c^i(M \times \R) \xlongrightarrow{\pi_*} H_c^{i - 1} M$. Furthermore, for any $e = e(t) dt$, a compactly supported function on $\R$ with $\int_\R e = 1$, we can defined a map $e_*: \Omega_c^{i - 1}(M) \longrightarrow \Omega_c^i(M \times \R)$ via $\phi \mapsto \pi^* \phi \wedge e$.
+
+\begin{theorem}[Poincar\'e Lemma]
+    \[
+    \begin{tikzcd}
+        H_c^i(M \times \R) \arrow[r, shift right, swap, "\pi_*"] & H_c^{i - 1}(M) \arrow[l, shift right, swap, "e_*"]
+    \end{tikzcd}
+    \]
+    are inverse.
+\end{theorem}
+\begin{proof}
+    \begin{enumerate}
+        \item $\pi_* \circ e_*$ takes $\phi \mapsto \pi^* \phi \wedge e \mapsto \phi \int_\R e = \phi$ by definition.
+        
+        \item We seek a chain homotopy operator $K: \Omega_c^i(M \times \R) \longrightarrow \Omega_c^{i - 1}(M \times \R)$ between $id$ and $e_* \circ \pi_*$, i.e. $id - e_* \circ \pi_* = (-1)^? (dK \pm Kd)$. We're lazy about the signs, but in the end it doesn't even matter, as we're only using $K$ to show that $e_* \circ \pi_*$ descends to the identity on cohomology. Indeed, we define $K$ as follows.
+        \begin{align*}
+            (\pi^* \phi) f(x, t) &\mapsto 0\\
+            \pi^* \phi \wedge f(x, t) dt &\mapsto \phi\parens{\int_\R e(\tau) d\tau \int_{-\infty}^t f(x, \tau) d\tau - \int_\R f(x, \tau) d\tau \int_{-\infty}^t e(\tau) d\tau}
+        \end{align*}
+        
+        This definition deserves some explanation. If we take the trivial case of $\pi: \R \longrightarrow *$, then $\pi_*$ takes $\Omega_c^1(\R) \longrightarrow \Omega_c^0(*) = \R$ via $f(t) dt \mapsto \int f(t) dt$, while $e_*$ takes $1 \mapsto e$. Then we have
+        \begin{align*}
+            (id - e_* \circ \pi_*) f(t) dt &= f(t) dt - \parens{\int_\R f(\tau) d\tau} e(t) dt\\
+            &= \parens{\int_\R e(\tau) d\tau} f(t) dt - \parens{\int_\R f(\tau) d\tau} e(t) dt
+        \end{align*}
+        and $K$ is therefore a generalization of this.
+    \end{enumerate}
+    
+    [The proof will be continued next time.]
+\end{proof}

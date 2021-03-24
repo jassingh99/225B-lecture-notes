@@ -1,0 +1,65 @@
+\subsection{Orientations day 1}
+
+\subsubsection{Oriented Vector Spaces}
+
+    \begin{definition}
+        Let $V$ be a finite dimensional vector space over $\R$. Then $F(V)$ is the set of all ordered bases of $V$. An element of $F(V)$ is called a frame of $V$.
+    \end{definition}
+    
+    \begin{remark}
+        We view $F(V) \subseteq V^n$. Linear independence is an open condition, so this is an open subset and inherits the topology/smooth structure from $V^n$. Furthermore, there is a smooth action of $GL(V)$ on $F(V)$ via termwise evaluation, which is more or less just matrix multiplication. Restricting this action to $GL^+(V)$ yields two orbits: $GL^+(V) * (v_1, \dots, v_n)$ and $GL^+(V) * (-v_1, \dots, v_n)$. We denote the equivalence class of a frame $v = (v_1, \dots, v_n)$ by $[v] = [v_1, \dots, v_n]$ and let $-[v]$ be the other class.
+    \end{remark}
+    
+    \begin{definition}
+        An orientation of $V$ is an equivalence class of $F(V)$. Denote $\mathcal O(V) = F(V)/{\sim}$. The standard orientation on $\R^n$ is $[e_1, \dots, e_n]$.
+        
+        Note that for any \textit{nonzero} vector space, there are precisely two orientations. Of course, the 0 vector space has $F(0) = \{()\}$, the ``empty tuple". Therefore, for consistency, we say that an orientation of the 0 vector space is simply a choice of $\{+, -\}$.
+    \end{definition}
+    
+    We wish to consider when two oriented vector spaces (a vector space with an orientation) are equivalent. The natural definition is, of course, that a linear isomorphism $\phi: V \longrightarrow V'$ of oriented vector spaces $(V, \mathcal O), (V', \mathcal O')$ is orientation preserving if $\phi(\mathcal O) = \mathcal O'$.
+    
+    To extend this to manifolds, the natural thing to do is to talk about frames and orientations of each tangent space. Furthermore, this should these frames and orientations should somehow vary smoothly as parameterized by $M$. Indeed, we define
+    
+    \begin{definition}
+        For a manifold $M$, let the frame bundle be a ``bundle" $F(M) \longrightarrow M$ whose fiber over $x$ is $F(T_x M)$. Let its orientation bundle be $\mathcal O(M) \longrightarrow M$ whose fiber over $x$ is $\mathcal O(T_x M)$. Defining the smooth structure on these is homework. Note that $\mathcal O(M)$ is a 2 to 1 map. In fact, it's a double cover (and a 2 to 1 proper submersion).
+    \end{definition}
+
+\subsubsection{Oriented Manifolds}
+
+    This new framework allows us to formalize the notion of a smoothly varying orientation on each tangent space of $M$. Indeed,
+    
+    \begin{definition}
+        An orientation of $M$ is a global section of the orientation bundle $\mathcal O(M) \longrightarrow M$.
+    \end{definition}
+    
+    We previously defined $M$ to be orientable iff the transition functions of $TM$ had positive determinant. Indeed, these notions are compatible.
+    
+    \begin{remarks}
+        \begin{enumerate}
+            \item $M$ is orientable iff $\mathcal O(M) \longrightarrow M$ admits a global section.
+            
+            \item If $M$ is connected, $M$ is orientable iff $\mathcal O(M)$ has two connected components. These are the two orientations of $M$.
+        \end{enumerate}
+    \end{remarks}
+    
+    \begin{example}
+        **INSERT PICTURE FROM NOTES REGARDING MÖBIUS BAND**
+    \end{example}
+    
+    \begin{conventions}
+        \begin{description}
+            \item[Product Orientation.] Let $(M, \mathcal O_M), (N, \mathcal O_N)$ be oriented manifolds. We orient the product as $(M \times N, \mathcal O_M \times \mathcal O_N)$ via $(\mathcal O_M \times \mathcal O_N)(p, q) = [\mathcal O_M(p), \mathcal O_N(q)]$. By this, we mean that if $\mathcal O_M(p)$ (the orientation of $T_p M$) is $[v_1, \dots, v_m]$ and $\mathcal O_N(q) = [w_1, \dots, w_n]$, then we take $(\mathcal O_M \times \mathcal O_N)(p, q) = [v_1, \dots, v_m, w_1, \dots, w_n]$.
+            
+            Note that the order of $M$ and $N$ is extremely important. $M \times N \cong N \times M$ as manifolds, but this need not hold as oriented manifolds. Indeed, it takes $(\dim M)(\dim N)$ swaps to get from $[v_1, \dots, w_n]$ from $[w_1, \dots, v_m]$. Hence, $\mathcal O_M \times \mathcal O_N = (-1)^{(\dim M)(\dim N)}\mathcal O_N \times \mathcal O_M$.
+            
+            \item[Boundary Orientation.] Let $M$ be an oriented manifold with boundary. Let $n$ be the outward pointing normal (this definition is clear in local coordinates when you're looking at a half plane, and is (?????) invariant under positively oriented coordinate changes). $\mathcal O_{\partial M}$ is defined to satisfy $\mathcal O_M = [n, \mathcal O_{\partial M}]$. The convention of the normal vector being first is important.
+        \end{description}
+        
+        \begin{examples}
+            \begin{enumerate}
+                \item $[0, 1] \subseteq \R$ is a submanifold with boundary. Its interior is $(0, 1)$, which inherits the standard orientation $[e_1]$ on $\R$. We have $\partial[0, 1] = \{0, 1\}$. Let $\varepsilon_i = \pm 1, i = 0, 1,$ be the orientation of $i \in \partial [0, 1]$. The boundary orientation insists that $[e_1] = [n_i, \varepsilon_i]$ for $n_i$ the normal vector at $i$. $n_1$ points in the $e_1$ direction whereas $n_0$ points in the $-e_1$ direction. Hence, $\varepsilon_1 = +$ and $\varepsilon_0 = -$. 
+                
+                \item We consider the orientation of $[0, 1]_t \times M$ with $M$ oriented (boundaryless??), given the product orientation. Indeed, $\partial ([0, 1] \times M) = \{0\} \times M \cup \{1\} \times M$. By example 1 and the above conventions, the boundary orientation on $\{0\} \times M$ is $-\mathcal O_M$ and the boundary orientation on $\{1\} \times M$ is $\mathcal O_M$.
+            \end{enumerate}
+        \end{examples}
+    \end{conventions}

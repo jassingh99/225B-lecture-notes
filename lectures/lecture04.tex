@@ -1,0 +1,68 @@
+\subsection{Morse Functions}
+
+\begin{definition}
+    A critical point of a map $f: M \longrightarrow \R$ is a point $p \in M$ such that $df_p$ is not onto (cf. regular points vs. values). This is called nondegenerate if there are local coordinates $x_1, \dots, x_n$ about $p$ such that the Hessian $H = \parens{\diff{^2 f}{x_i \partial x_j}}$ is nonsingular at $p$.
+\end{definition}
+
+Independence of coordinates in this definition is a trivial application of the homework functor $HW: \textbf{UnsolvedProblems} \longrightarrow \textbf{SolvedProblems}$.
+
+\begin{examples}
+    There are 3 prototypes for critical points of some $f: \R^2 \longrightarrow \R$.
+    \begin{enumerate}
+        \item $f(x, y) = \frac{1}{2}(x^2 + y^2)$. At the critical point at the origin, $H =
+        \begin{pmatrix}
+        1 & 0\\
+        0 & 1
+        \end{pmatrix}$.
+        
+        \item $f(x, y) = \frac{1}{2}(x^2 - y^2)$. At the critical point at the origin, $H =
+        \begin{pmatrix}
+        1 & 0\\
+        0 & -1
+        \end{pmatrix}$.
+        
+        \item $f(x, y) = \frac{1}{2}(-x^2 - y^2)$. At the critical point at the origin, $H =
+        \begin{pmatrix}
+        -1 & 0\\
+        0 & -1
+        \end{pmatrix}$.
+    \end{enumerate}
+\end{examples}
+
+An important result which we state without proof (cf. Milnor's \textit{Morse Theory}) is the Morse Lemma.
+
+\begin{theorem}[Morse Lemma]
+    Given $p \in M$ a nondegenerate critical point of $f: M \longrightarrow \R$, there exist local coordinates $x_1, \dots, x_n$ about $p = 0$ such that $f(x_1, \dots, x_n) = f(p) + \sum \lambda_i x_i^2$, $\lambda_i = \pm 1$.
+\end{theorem}
+
+\begin{definition}
+    We view the Hessian at $p$ as a quadratic form on $T_p M$. For $p$ a nondegenerate critical point (sometimes called a Morse critical point), the index is defined to the the rank of the maximum negative definite subspace of $H(p)$. This equals the number of $\lambda_i$ which are negative in the Morse Lemma. In the above 3 examples, the indices at the origin are 0, 1, 2 respectively.
+\end{definition}
+
+\begin{definition}
+    $f: M \longrightarrow \R$ is Morse if all of its critical points are Morse.
+\end{definition}
+
+\begin{remark}
+    For technical applications, we often want $f$ to be proper.
+\end{remark}
+
+\begin{example}
+    Sit the torus standing up on the $xy$-plane and take the ``height function" $T^2 \longrightarrow \R$. The critical points are at the cusps on the torus. Starting from the bottom most point, the indices of these critical points are 0, 1, 1, 2.
+\end{example}
+
+\begin{remark}
+    A Morse function on a compact manifold can be used to glue a cellular decomposition.
+\end{remark}
+
+\begin{theorem}
+    A generic function is Morse.
+\end{theorem}
+Here, ``generic" means that a ``random" function $f: M \longrightarrow \R$ is Morse. This is equally vague, so what we really mean is something akin to the \hyperlink{item:transverse homotopy thm}{transverse homotopy theorem}, which we intuit as saying that a ``generic" function is transverse to a fixed submanifold.
+
+For this proof, we appeal first to the homework functor, which yields $f$ Morse iff $df: M \longrightarrow T^*M$ is transverse to the 0 section.
+\begin{proof}
+    Our goal is to construct a thicc $F: M_x \times S_s\longrightarrow \R$ such that $\Phi: M \times S \longrightarrow T^* M$ via $(x, s) \mapsto df_s(x)$ is transverse to the 0 section. We proceed similarly to the proof of the transverse homotopy theorem.
+    
+    Assuming $M$ to be compact, for $p \in M$ we take local coordinates $x_1, \dots, x_n$ and balls $p \in B_p \subsetneq B_p'$. Take now functions $\widetilde{x_i}$ supported on $B_p'$ such that which agree with $x_i$ on $B_p$. By compactness, take finitely many $p$ such that $int B_p$ cover $M$. Now let $f_1, \dots, f_k$ be the list of all $\widetilde{x_i}$ constructed as above. Now let $F(x, s_1, \dots, s_k) = f(x) + \sum s_i f_i(x)$. Then $\Phi(x, s_1, \dots, s_k) = df(x) + \sum s_i df_i(s)$ (we are only differentiating in the $x$ direction). Then $\Phi$ is transverse to the 0 section, as the $d\widetilde{x_i}$ span the whole tangent space of any point in their associated $B_p$ . Hence, as in the proof of the transverse homotopy theorem, $df_s = \Phi(-, s) \transverse 0$ for almost all $s \in S$.
+\end{proof}

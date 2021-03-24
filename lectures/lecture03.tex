@@ -1,0 +1,39 @@
+\subsection{Transversality day 2}
+
+\begin{definition}
+    Two maps $f_0, f_1: M \longrightarrow N$ are (smoothly) homotopic if there exists some $F: M \times [0, 1] \longrightarrow N$ such that $f_i = F(-, i), i = 0, 1$. We often write $f_0 \sim f_1$. This is easily checked to be an equivalence relation. This formalizes the intuitive notion of a smooth deformation of a map.
+\end{definition}
+
+\hypertarget{item:transverse homotopy thm}{}
+\subsubsection{Transverse Homotopy Theorem}
+\begin{theorem}[Transverse Homotopy]
+    Let $f: M \longrightarrow N$, $Z \subseteq N$. Then there exists a $g: M \longrightarrow N$ such that $f \sim g$ and $g \transverse Z$.
+\end{theorem}
+\noindent The idea is that except for stupid things (which are measure 0), any way we can push $f$ will force transversality. Consider the nontransverse examples such as the parabola and the axis for a visual of this.
+
+\noindent This follows from the following two theorems.
+\begin{theorem}
+    Given $f: M \longrightarrow N$, $Z \subseteq N$, there exists a thiccening $F: M \times S \longrightarrow N$ with $F \transverse Z$ with $S$ an open ball in $\R^m$ and some $f_{s_0} = f$.
+\end{theorem}
+\begin{theorem}
+    If $F: M \times S \longrightarrow N$ is transverse to some $Z \subseteq N$ then for almost every $s \in S$, $f_s \transverse Z$.
+\end{theorem}
+\noindent The latter was \hyperlink{item:thm 2.2}{proven last lecture}, so it suffices to prove the former.
+\begin{proof}
+    For an easy case, take $N = \R^n$. Now let $F: M \times \R^n \longrightarrow \R^n$ via $(x, y) \mapsto f(x) + y$. Then $F_0 = f$. This is how to formalize ``pushing" $f$ around. Clearly, this is a submersion at all points, so $F \transverse Z$. Furthermore, by the above theorem, this formalizes the intuition that almsot every direction we can push $f$ works.
+    
+     We now prove the result in greater generality. Suppose for simplicity that $N^n$ is compact. For $p \in N$, let $x_1, \dots, x_n$ be local coordinates on $p \in U_p \subseteq N$. View $U_p \subseteq \R^n$ via these coordinates. Take concentric closed balls $B_p \subseteq B_p' \subseteq U_p$ centered at $p$. Then there exists a vector field $X_i$ supported on $B_p'$ which equals $\diff{}{x_i}$ on $B_p$. By compactness, cover $N$ by finitely many interiors of $B_p$. Let $Y_1, \dots, Y_k$ be the vector fields corresponding to these finitely many points we just defined.
+    
+    Now let $\phi_t^i(x)$ be the time $t$ flow of $Y_i$ starting at $x$. Let $F: M \longrightarrow \R^k \longrightarrow N$ via $(x, t_1, \dots, t_k) \mapsto \phi_{t_k}^k \circ \dots \phi_{t_1}^1 (x)$. This starts at $x$ and flows for time $t_1$ along $Y_1$, $t_2$ along $Y_2, \dots, t_k$ along $Y_k$. This is (clearly?) a submersion (set all but $t_1$ to 0 and differentiate to get $Y_1$).
+\end{proof}
+
+We also have the following enhancements to the transverse homotopy theorem, which we state without proof.
+\begin{enumerate}
+    \item The relative version. Let $f: M \longrightarrow N$, $Z \subseteq N$, and some $C \subseteq M$ closed. Suppose that $f \transverse Z$ on $C$ (transversality is an infinitesimal condition, so this means it holds for points on $C$). Then there is a $g \transverse Z$ that is homotopic to $f$ \textit{relative to $C$}, i.e. there is a homotopy constant on $C$.
+    
+    The idea for the proof is to extend the infinitesimal to the local and show transversality in a neighborhood of $C$. Then apply the above to the complement of this neighborhood.
+    
+    \item Manifolds with boundary. Let $f: M \longrightarrow N$, $Z \subseteq N$ with $M$ having boundary and $N, Z$ boundaryless. Then there is a $g \sim f$ with $g|_{\partial M} \transverse Z$ and $g \transverse M$. The definition of the tangent space on the boundary is obvious in local coordinates where we view it as a half plane.
+    
+    The idea for this proof is to first show transversality on $\partial M$ and use the relative version on $C = \partial M$.
+\end{enumerate}

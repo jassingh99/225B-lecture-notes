@@ -1,0 +1,73 @@
+\subsection{Cobordisms and Thom's work}
+
+We seek to classify the cobordism classes of $n$-manifolds.
+
+\begin{convention}
+    Manifolds are compact.
+\end{convention}
+
+\begin{definition}
+    $M^n$, $(M')^n$ are cobordant if there exists some $X^{n + 1}$ such that $\partial X = M \coprod M'$ (c.f. \hyperlink{item:framed cobordisms}{framed cobordisms}).
+\end{definition}
+
+\hypertarget{item:classification cb}{}
+\begin{theorem}[Thom]
+    There exists a sequence of spaces
+    \[
+    \begin{tikzcd}
+        \dots \arrow[r] & MO(k) \arrow[r] & MO(k + 1) \arrow[r] & \dots
+    \end{tikzcd}
+    \]
+    with colimit $MO$ such that
+    \[
+        \eta_n = \{\text{cobordisms classes of } n \text{ manifolds}\} \xlongleftrightarrow{\sim} [S^n, MO]
+    \]
+\end{theorem}
+\begin{proof}[Proof sketch.]
+    We first begin with a definition.
+    
+    \begin{definition}
+        The Thom space $\tau(E)$ of a vector bundle $E \longrightarrow M$ is the one point compactification of $E$. For example, the one point compactification of the trivial vector bundle $\R^n \times M \longrightarrow M$ is $S^n \times M/\text{glue all north poles(=point at infinity)} = S^n \times M/\{\infty\} \times M$.
+    \end{definition}
+    
+    Recall
+    \[
+    \begin{tikzcd}
+        \dots \arrow[r] & \gamma(k, n) \arrow[r] \arrow[d] & \gamma(k, n + 1) \arrow[r] \arrow[d] & \gamma(k, n + 2) \arrow[r] \arrow[d] & \dots\\
+        \dots \arrow[r] & Gr(k, n) \arrow[r] & Gr(k, n + 1) \arrow[r] &
+        Gr(k, n + 2) \arrow[r] & \dots
+    \end{tikzcd}
+    \]
+    from the previous lecture on \hyperlink{item:universal bundle}{the universal bundle}. We denote $MO(k) = \tau(\gamma(k, \infty))$.
+    
+    Now, given $M^n$, take $M \longrightarrow \R^{k + n}$ an embedding. Consider the (rank $k$) normal bundle $N(M) \longrightarrow M$ viewed in $\R^{k + n}$ via this embedding. As discussed last time, there exists a pullback diagram of vector bundles
+    \[
+    \begin{tikzcd}
+        N(M) \arrow[r] \arrow[d] \arrow[dr, phantom, "\ulcorner", very near start] & \gamma(k, k + n) \arrow[d]\\
+        M \arrow[r] & Gr(k, k + n)
+    \end{tikzcd}
+    \]
+    where the map $M \longrightarrow Gr(k, k + n)$ is given by $p \mapsto T_{f(p)} f[M]$. Similarly, we have
+    \[
+    \begin{tikzcd}
+        N(M) \arrow[r] \arrow[d]  & \gamma(k, \infty) \arrow[d]\\
+        M \arrow[r] & Gr(k, \infty)
+    \end{tikzcd}
+    \]
+    
+    We therefore define a map $S^{k + n} \xlongrightarrow{\phi_M} MO(k) = \tau(\gamma(k, \infty))$ as follows. On $N(M) \subseteq \R^{k + n} \subseteq S^{k + n}$, this is the composition $N(M) \longrightarrow \tau(N(M)) \longrightarrow \tau(\gamma(k, \infty))$. On the complement, send everything to the $\infty$.
+    
+    Now, given a cobordism $X^{n + 1}$ between $M, M'$, there exists an embedding $X \longrightarrow \R^{k + n} \times [0, 1]$ such that $X \cap \R^{k + n} \times 0 = M$ and $X \cap \R^{k + n} \times 1 = M'$. We use some kind of relative embedding theorem. Take the normal bundle $N(X) \longrightarrow X$, which restricts to $N(M)$, $M(M')$ on the slices at 0, 1 respectively. Define now a map $S^{k + n} \times [0, 1] \longrightarrow \tau(\gamma(k, \infty))$ as before. Indeed, on $N(X)$, this is the composition $N(X) \longrightarrow \tau(N(X)) \longrightarrow \tau(\gamma(k, \infty))$. On the complement, send everything to $\infty$. This is a homotopy between $\phi_M \sim \phi_{M'}$. Hence, the map $\Phi(M) = \phi_M$ is well defined, as cobordant manifolds induce homotopic maps.
+    
+    To go the other direction, given $f: S^{k + n} \longrightarrow MO(k)$, how do we get a manifold? Similarly to last time, we can homotope $f$ so that its image lies in $\tau(\gamma(k, k + n))$. The codomain of $f$ need not be a manifold, but it will be one away from $\infty$. We therefore replace $f$ with a ``smooth approximation away from $\infty$" that is transverse to the 0 section of $\gamma(k, k + n)$. We therefore take this manifold to be $\Phi^{-1}(M) = f^{-1}[0]$.
+    
+    [PICTURES]
+\end{proof}
+
+To summarize the work we've done recently, we have the following bijections.
+
+\begin{align*}
+    \{\text{codimension } n \text{ framed submanifolds of } M\}/\text{framed cobordism} & \cong [M, S^n] & \hyperlink{item:classification fc}{(*)}\\
+    \{\text{rank } k \text{ vector bundles over } M\}/\text{isomorphism} & \cong [M, BO(k)] & \hyperlink{item:classification vb}{(*)}\\
+    \{n \text{ manifolds}\}/\text{cobordism} & \cong [S^n, MO] & \hyperlink{item:classification cb}{(*)}
+\end{align*}

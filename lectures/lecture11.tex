@@ -1,0 +1,109 @@
+\begin{convention}
+        $M$ is a compact, oriented manifold.
+\end{convention}
+
+\subsection{Euler Characteristic}
+    
+    \begin{definition}
+        Let $\Delta \subseteq M$ be the diagonal. Then the Euler characteristic of $M$ is
+        \begin{equation}
+            \chi(M) = I(\Delta, \Delta).
+        \end{equation}
+    \end{definition}
+    
+    We proceed to state, without proof, various alternate definitions of the Euler characteristic. For the following discussion, we will frequently refer to the torus $T^2$.
+    
+    \begin{enumerate}
+        \item Suppose that $M$ has a triangulation, i.e. a decomposition into simplices $\Delta^n$. For example, taking $T^2 = [0, 1]^2/{\sim}$, drawing the diagonal line from $(0, 0) \to (1, 1)$ induces a triangulation. Then
+        \begin{equation}
+            \chi(M) = \sum (-1)^i (\text{number of } i \text{ simplices}).
+        \end{equation}
+        Using the above triangulation of $T^2$, we count that there is one 0-simplex (the point $(0, 0) \sim (1, 1)$), three 1-simplices (the diagonal and the two boundary), and two 2-simplices (the triangles cut out by the diagonal). Hence, $\chi(T^2) = 0$.
+        
+        \item Given a Morse function $f: M \longrightarrow \R$, we have
+        \begin{equation}
+            \chi(M) = \sum (-1)^i (\text{number of critical points of index } i).
+        \end{equation}
+        View now $T^2 \subseteq \R^3$ sitting tangent to the $xy$-plane. Take the height function $f: T^2 \longrightarrow \R$, which is Morse. As discussed in the section on Morse functions, $f$ has one index 0 critical point, two index 1 critical points, and one index 2 critical point. Hence, $\chi(T^2) = 0$.
+        
+        This discussion about $T^2$ generalizes to an arbitrary genus $g$ surface $\Sigma_g$. Indeed, sit $\Sigma_g$ on the $xy$-plane in the same way and take a Morse function. Once again, the bottom cusp has index 0, the top cusp has index 2, and all intermediate cusps have index 1. Then $\chi(\Sigma_g) = 2 - 2g$.
+    \end{enumerate}
+
+\subsection{Lefschetz Fixed Point Theory}
+
+    Vaguely speaking, the goal here is to study the fixed points of maps $f: M \longrightarrow M$. Of course, these can range wildly and be horribly infinite (consider the identity). We would furthermore, like some homotopy invariant study of this, so we seek to rephrase this in terms of intersection theory.
+    
+    \begin{definition}
+        Let $f: M \longrightarrow M$. Let $\Gamma(f) = \{(x, f(x))\} \subseteq M \times M$ the graph of $f$ and $\Delta \subseteq M \times M$ the diagonal (which can be viewed as the graph of the identity). Note that $\Gamma(f) \cap \Delta$ is the fixed points of $f$, so we define the Lefschetz number of $f$ to be $L(f) = I(\Delta, \Gamma(f))$.
+    \end{definition}
+    
+    \begin{remarks}
+        \begin{enumerate}
+            \item This is a homotopy invariant. Indeed, wiggling $f$ wiggles its graph.
+            \item If $f: M \longrightarrow M$ with $\Gamma(f) \transverse \Delta$, then $|L(f)|$ is a lower bound for the number of fixed points of $f$. We call such a map Lefschetz.
+        \end{enumerate}
+    \end{remarks}
+    
+    \begin{theorem}
+        If $L(f) \neq 0$ then $f$ has a fixed point.
+    \end{theorem}
+    
+    \begin{proof}
+        If $f$ had no fixed points, $\Delta \cap \Gamma(f) = \emptyset$. Hence, these trivially intersect transversely so the above applies and $L(f) = 0$.
+    \end{proof}
+    
+    We make an obvious point, which is that $L(id) = \chi(M)$. Hence, if $f \sim id$, $L(f) = \chi(M)$. Thus, if there is a map $f: M \longrightarrow M$ homotopic to the identity with no fixed points, then $\chi(M) = 0$. Indeed, consider $T^2 = \R^2 / \Z^2$ and take $(x, y) \mapsto (x + \varepsilon, y + \varepsilon)$ for $\varepsilon > 0$ sufficiently small. This is homotopic to the identity (shrink $\varepsilon$) and has no fixed points, so we again see $\chi(T^2) = 0$.
+    
+    \begin{theorem}
+        Every map $f: M \longrightarrow M$ is homotopic to a Lefschetz map.
+    \end{theorem}
+    
+    \begin{proof}
+        This is a typical transversality argument, similar to $df \transverse 0$ iff $f$ is Morse.
+    \end{proof}
+
+\subsection{Local Calculations}
+
+    \begin{definition}
+        Suppose $x \in \Delta \transverse \Gamma(f)$, i.e. transversality holds at this point. This is called a Lefschetz fixed point of $f$.
+    \end{definition}
+    
+    Note that $T_{(x, x)} \Delta = \{(v, v) : v \in T_x M\}$ and $T_{(x, x)} \Gamma(f) = \{(v, df_x v) : v \in T_x M\}$. This leads us to the following.
+    
+    \begin{theorem}
+        TFAE
+        \begin{enumerate}
+            \item $x$ is a Lefschetz fixed point of $f$.
+            \item $df_x - id$ is invertible.
+            \item 1 is not an eigenvalue of $df_x$.
+        \end{enumerate}
+    \end{theorem}
+    
+    \begin{proof}
+        $(2) \iff (3)$ is linear algebra. Furthermore,
+        \begin{align*}
+            x \text{ is a Lefschetz fixed point of } f & \iff T_{(x, x)} \Delta \cap T_{(x, x)} \Gamma(f) = 0\\
+            & \iff \nexists v \neq 0 \text{ such that } df_x v = v\\
+            &\iff df_x - id \text{ is invertible.}
+        \end{align*}
+    \end{proof}
+    
+    This leads us to the following HW/lemma: the local contribution of a Lefschetz fixed point $x$ to $L(f)$ is just $L_x(f) = sgn(\det(df_x - id))$.
+    
+    \begin{examples}
+        Consider a linear map $f: \R^2 \longrightarrow \R^2$. Then $f(0) = 0$ and $df_0 = f$. It often suffices to work infinitesimally where we can assume linearity (via the derivative), so this is important to look at.
+        
+        \begin{enumerate}
+            \item $f = \lambda id$ with $\lambda > 1$. Then $L_0(f) = 1$. This arises, for example, when looking at a finite time flow of a vector field with a source at 0, such as $X = x_1 \diff{}{x_1} + x_2 \diff{}{x_2}$.
+            
+            \item $f = \lambda id$, $0 < \lambda < 1$. Then $L_0(f) = 1$. This arises, for example, when looking at a finite time flow of a vector field with a sink at 0, such as $X = -x_1 \diff{}{x_1} -x_2 \diff{}{x_2}$.
+            
+            \item $f =
+            \begin{pmatrix}
+            \lambda_1 & 0\\
+            0 & \lambda_2
+            \end{pmatrix}$ for $\lambda_1 > 0$, $0 < \lambda_2 < 1$. Then $L_0(f) = -1$. This arises, for example, when looking at a finite time flow of a vector field with a more complicated zero, such as $X = x_1 \diff{}{x_1} -x_2 \diff{}{x_2}$.
+        \end{enumerate}
+        
+        The moral of these examples is that a uniform expansion/contraction correspond to $L_x(f) = 1$.
+    \end{examples}

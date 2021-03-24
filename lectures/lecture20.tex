@@ -1,0 +1,76 @@
+\subsection{Poincar\'e Duality}
+
+\subsubsection{Poincar\'e Lemma cont.}
+We begin by continuing our proof of the Poincar\'e Lemma from the previous lecture.
+
+\begin{proof}
+    Note that from here on, we shall abuse notation and write $\pi^* \phi = \phi$. This is not too heinous, as $\pi^* \phi$ is basically just $\phi$ extended constantly in the vertical direction.
+    
+    Recall that we were left to show that the $K$ we defined previously was indeed a chain homotopy operator between $id$ and $e_* \circ \pi_*$. Indeed, we see that $(id - e_* \pi_*)\phi f = \phi f$. On the other hand,
+    \begin{align*}
+        (dK - Kd)\phi f &= -Kd(\phi f)\\
+        &= -K\parens{d(\phi \circ f) + (-1)^i \phi \diff{f}{x} dx + (-1)^i \phi \diff{f}{t} dt}\\
+        &= (-1)^{i + 1} \phi\parens{\int_{-\infty}^t \diff{f}{\tau} d\tau - \int_\R \diff{f}{\tau} d\tau \int_{-\infty}^t e(\tau) d\tau}\\
+        &= (-1)^{i + 1} \phi f
+    \end{align*}
+    so $id - e_* \circ \pi_* - (-1)^{i + 1}(dK - Kd)$ and we have the desired isomorphism on cohomology.
+\end{proof}
+
+We now state a key example of the Poincar\'e Lemma. Indeed, this allows us to compute
+\[
+    H_c^i(\R^n) = H_c^{i - 1}(\R^{n - 1}) = \dots = H_c^0(\R^{n - i}) =
+    \begin{cases}
+        0 & n > i\\
+        \R & n = i
+    \end{cases}
+\]
+Of course, for $i > n$ we of course have $H_c^i(\R^n) = 0$. This reveals as interesting pattern
+
+\[
+    \begin{tabular}{c|c|c}
+                    & $H_c^i(\R^n)$ & $H^i(\R^n)$\\
+    \hline
+        $i = n$     & $\R$          & 0\\
+    \hline
+        $i = n - 1$ & 0             & 0\\
+    \hline
+        $\vdots$    & \vdots        & \vdots\\
+    \hline
+        $i = 0$     & 0             & $\R$\\
+    \end{tabular}
+\]
+so we'd suspect to have $H^i(M) = H_c^{n - i}(M)$ for $n = \dim M$.
+
+\subsubsection{Poincar\'e Duality}
+
+\begin{definition}
+    An open cover of a manifold is said to be good if all nonempty finite intersections are diffeomorphic to $\R^n$. It is a fact, which we state without proof, that all manifolds admit a good cover.
+\end{definition}
+
+\begin{lemma*}
+    If $M$ has a finite good cover then $H^i(M)$ and $H_c^i(M)$ are finite dimensional.
+\end{lemma*}
+\begin{proof}
+    Homework.
+\end{proof}
+
+\begin{theorem}[Poincar\'e Duality]
+    If $M^n$ is oriented and has a finite good cover, then the pairing
+    \begin{align*}
+        \int: H^i(M) \otimes H_c^{n - i}(M) &\longrightarrow \R\\
+        \omega \otimes \eta \mapsto \int_M \omega \wedge \eta
+    \end{align*}
+    is nondegenerate. Equivalently, the associated map $H^i(M) \longrightarrow (H_c^{n - i}(M))^*$ is an isomorphism.
+\end{theorem}
+\begin{corollary}
+    If $M^n$ is oriented and compact, $H^i(M) \cong (H^{n - i}(M))*$
+\end{corollary}
+\begin{proof}
+    Poincar\'e duality is a local statement which has been globalized.
+    
+    We first show that result for $M = \R^n$. Indeed, for the map $H^i(\R^n) \longrightarrow (H_c^{n - i}(\R^n))^*$, the only nontrivial case is $i = 0$. Indeed, for $i = 0$, the map takes $1 \mapsto \parens{\omega \mapsto \int_{\R^n} \omega}$. Obviously, forms with $\int_{\R^n} \omega \neq 0$ exist, so by dimension counting this is an isomorphism.
+    
+    Now, suppose we are in the general case and have a finite good cover $\{U_1, \dots, U_k\}$. Then by the above argument, Poincar\'e duality holds for each $U_i \cong \R^n$ and all finite nonempty intersections $U_{i_1} \cap \dots \cap U_{i_l}$.
+    
+    [Proof continued next time.]
+\end{proof}

@@ -1,0 +1,22 @@
+\subsection{The Hopf Degree Theorem}
+
+\begin{theorem}[Hopf Degree Theorem]
+    If $M^m$ is compact, oriented, connected, and boundaryless, then two maps $f, g: M \longrightarrow S^m$ are homotopic if and only if $\deg(f) = \deg(g)$.
+\end{theorem}
+\begin{proof}
+    By the Pontryagin-Thom, $[M, S^m] = FC_0(M)$, the framed 0 dimensional cobordism classes of $M$. 0 dimensional framed cobordism classes in $M$ are, by compactness, just finite sets $\{(x^1, v^1), \dots, (x^n, v^n)\}$ with $x^i \in M$ and $v^i$ a frame of $T_{x^i} M$. Let $sgn(x^i, v^i)$ be 1 if the orientation of $v^i$ and $M$ agree at $x$ and -1 otherwise. We have
+    \[
+    \begin{tikzcd}
+        SmMan(M, S^m) \arrow[r, "\deg"] \arrow[d] &\Z\\
+        \bracket{M, S^m} \arrow[ur]
+    \end{tikzcd}
+    \]
+    The degree map takes $f \mapsto \#f^{-1}[y]$ for some regular value $y$. We have that $f^{-1}[y] = \{(x^1, v^1), \dots, (x^n, v^n)\}$. Then $\deg(f) = \sum sgn(x^i, v^i)$.
+    
+    For surjectivity, take the framed cobordism class determined by $\{(x^1, v^1), \dots, (x^n, v^n)\}$. The corresponding $f \in [M, S^m]$ has degree $\sum sgn(x^i, v^i)$, which can be any integer.
+    
+    We now proceed to show injectivity. Indeed, if $sgn(x, v) = - sgn(x', v')$ then $\{(x, v), (x', v')\}$ is framed cobordant to  $\emptyset$. Furthermore, if $sgn(x, v) = sgn(x', v')$ then $\{(x, v)\} \sim \{(x', v')\}$. Here, we use connectedness of $M$ and take a path, which drags along a vector field.
+\end{proof}
+
+As a variant, we have the mod 2 Hopf degree theorem. Here, if $M$ is compact, connected, boundaryless, and not orientable, then maps $M \longrightarrow S^n$ are homotopic iff they have the same mod 2 degree.
+

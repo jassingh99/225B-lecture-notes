@@ -1,0 +1,73 @@
+\subsection{Whitney Embedding Theorem}
+
+\begin{theorem}[Whitney Embedding]
+    Given an $n$-dimensional manifold $M$, there is an embedding $M \longrightarrow \R^{2n + 1}$.
+\end{theorem}
+\begin{proof}
+    We do the case where $M$ is compact and leave the rest to homework. We do this in two steps.
+    
+    \begin{lemma}[Step 1]
+        There is an embedding
+        \begin{tikzcd}
+            M \arrow[r, hook] & \R^N
+        \end{tikzcd}, $N >> 0$.
+    \end{lemma}
+    
+    \begin{lemma}[Step 2]
+        Given an embedding
+        \begin{tikzcd}
+            M \arrow[r, hook] & \R^N
+        \end{tikzcd}with $N \geq 2n + 2$, there exists a projection $\R^N \longrightarrow \R^{2n + 1}$ such that
+        \begin{tikzcd}
+            M \arrow[r, hook] & \R^N \arrow[r] & \R^{2n + 1}
+        \end{tikzcd}is an embedding.
+    \end{lemma}
+    
+    \begin{proof}[Proof of step 1]
+        ``A generic function into $\R^N, N >> 0$ is an embedding".
+        
+        Cover $M$ by finitely many rectangles $R_{p_1}, \dots, R_{p_l}$, each contained in some coordinate patch, with $p \in R_p = [-1, 1]_{x_1} \times \dots \times [-1, 1]_{x_n}$ and $p = 0$. Choose a bump function $\phi: \R \longrightarrow \R$ supported on $[-1, 1]$, $\phi'(x) \neq 0$ on $(-1, 0) \cup (0, 1)$ and $\phi(a) = \phi(b)$ iff $a = -b$ on $[-1, 1]$. Let $\phi_\varepsilon(x) = \phi(x - \varepsilon)$.
+        
+        Case $n = 1$. Let $g(x) = (\phi_{-\varepsilon}(x), \phi_{\varepsilon}(x))$. Observe that $g(x) = 0$ iff $x \notin (-1 - \varepsilon, 1 + \varepsilon)$, $g$ is an immersion on $(-1 - \varepsilon, 1 + \varepsilon)$, and $g$ is injective on $(-1 - \varepsilon, 1 + \varepsilon)$.
+        
+        Case $n = 2$. Let $\psi: \R \longrightarrow \R$ be a bump function symmetric about the origin which is identically 1 on $[-1 - \varepsilon, 1 + \varepsilon]$ and supported on $(-1 - 2\varepsilon, 1 + 2\varepsilon)$. Now, let $g(x_1, x_2) = (\phi_{-\varepsilon}(x_1) \psi(x_2), \phi_{\varepsilon}(x_1) \psi(x_2), \phi_{-\varepsilon}(x_2) \psi(x_1), \phi_{\varepsilon}(x_2) \psi(x_1))$. The $\psi$ ensure compact support. It's not hard to show that this is an embedding on $(-1 - \varepsilon, 1 + \varepsilon)^2$.
+        
+        Case $n$. Define analogously to $n = 2$.
+        
+        Now, let $\psi_1, \dots, \psi_{2nl}$ be the components of the associated $g$ defined on each rectangles $R_{p_1}, \dots, R_{p_l}$ (each $g$ has $2n$ components and there are $l$ many rectangles, so $l$ many $g$). Let $f = (\psi_1, \dots, \psi_{2nl})$. This is our proposed embedding $M \longrightarrow \R^{2nl}$.
+        
+        \begin{description}
+            \item[Immersion.] This is a local property and can therefore be done on the rectangles, where it is clear.
+            
+            \item[Proper.] $M$ is compact.
+            
+            \item[Injectivity.] Let $x, y \in M$ with $f(x) = f(y)$. If $x, y$ lie in the same rectangle, then we can simply use the properties of $g$ discussed above to get $x = y$. Else, by how the distinct $g$ for each rectangle are constructed, $x$ and $y$ are nonzero on distinct functions, so $f(x) \neq f(y)$.
+        \end{description}
+        
+        For the noncompact case, the rough idea is to replace the rectangles with a countable disjoint union of rectangles which finitely cover.
+    \end{proof}
+    
+    \begin{proof}[Proof of step 2]
+        Take such an embedding
+        \begin{tikzcd}
+            M \arrow[r, hook, "f"] & \R^N
+        \end{tikzcd},$N \geq 2n + 2$. We define the secant and tangent maps
+        \begin{align*}
+            \sigma: M \times M \times \R \longrightarrow \R^N \;\;\;\;\;\; & (x, y, t) \mapsto t(f(x) - f(y))\\
+            \tau: TM \longrightarrow \R^N \;\;\;\;\;\; &(x, v) \mapsto df_x(v)
+        \end{align*}
+        respectively. The names are suggestive: $\sigma$ paramemtrizes the line defined by $f(x) - f(y)$, which is viewed as a secant line through $M = f[M]$, and $\tau$ of course relates to the tangent space viewed in $\R^N$. Indeed, we will use $\sigma$ to prove injectivity and $\tau$ to prove immersiveness.
+        
+        $\dim M \times M \times \R = 2n + 1$ and $\dim TM = 2n$, so ``$\im(\sigma)$ is at most $2n + 1$ dimensional" and ``$\im(\tau)$ is at most $2n$ dimensional". Phrasing this more rigorously, as $N \geq 2n + 2$, Sard's theorem implies that both $\im(\sigma)$ and $\im(\tau)$ have measure 0 in $\R^N$. Hence, choose some $v \in \R^N$ which is not in the image of $\sigma$ or $\tau$.
+        
+        Now let $\pi: \R^N \longrightarrow (\R v)^\perp$, the orthogonal complement of the line spanned by $v$. Note that $0 \in \im(\sigma)$, so $v \neq 0$, so $\dim (\R v)^\perp = N - 1$. We claim that
+        \begin{tikzcd}
+            M \arrow[r, hook, "f"] & \R^N \arrow[r, "\pi"] & (\R v)^\perp
+        \end{tikzcd}is an embedding.
+        
+        Indeed, for injectivity, suppose $\pi(f(x)) = \pi(f(y))$. Then $f(x) - f(y) \in \ker(\pi) = \R v$. Hence, $f(x) - f(y) = tv$. If $t \neq 0$ then $\frac{1}{t}(f(x) - f(y)) = v$, but $v \notin \im(\sigma)$. Hence, $t = 0$ so $f(x) = f(y)$. As $f$ is an embedding, $x = y$.
+        
+        The same idea works to so immersiveness using $\tau$. Hence, by induction, we can orthogonally project away dimensions until $\R^{2n + 1}$ and remain an embedding.
+    \end{proof}
+    
+\end{proof}

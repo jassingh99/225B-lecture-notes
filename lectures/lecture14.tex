@@ -1,0 +1,60 @@
+\subsection{Framed Cobordisms and the Pontryagin Construction}
+
+\noindent (c.f. Milnor's \textit{Topology from a Differentiable Viewpoint})
+
+\noindent The goal is the study maps $M^m \longrightarrow S^n$ where $m, n$ need not be the same.
+
+\subsubsection{Smooth Approximations}
+
+\begin{theorem}[Smooth Approximation]
+    Let $M$ be a compact manifold and $N$ an arbitrary manifold.
+    \begin{enumerate}
+        \item Every continuous map $f: M \longrightarrow N$ admits a $C^0$-small smooth approximation $g: M \longrightarrow N$, i.e. for all $\varepsilon > 0$ such a $g$ exists such that $|f(x) - g(x)| < \varepsilon$ for all $x \in M$. For this to make sense, assume $N \subseteq \R^N$ or use a Riemannian metric. Compactness of $M$ implies that any two such metrics are equivalent.
+        \item Let $f_0, f_1: M \longrightarrow N$ be smooth and continuously homotopic. Then they are smoothly homotopic.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    $HW: \textbf{UnsolvedProblems} \longrightarrow \textbf{SolvedProblems}$.
+\end{proof}
+
+\begin{definition}
+    $[M, N] = Top/\text{homotopy}$\\
+    $[M, N]_{sm} = SmMan(M, N)/\text{smooth homotopy}$
+\end{definition}
+
+The smooth approximation theorem basically says that $[M, N]_{sm} \longrightarrow [M, N]$ (forgetful) is a natural isomorphism.
+
+\hypertarget{item:framed cobordisms}{}
+\subsubsection{Framed Cobordisms}
+\begin{definition}
+    Let $N, N' \subseteq M$ have the same dimension, with all manifolds boundaryless. $N$ and $N'$ are said to be cobordant in $M$ if $N \times [0, \varepsilon], N' \times [1 - \varepsilon, 1]$ can be extended to some compact submanifold $X \subseteq M \times [0, 1]$ with $\partial X = X \cap (M \times \{0, 1\}) = N \times 0 \cup N' \times 1$. Note that forcing the ``caps" for $[0, \varepsilon], [1 - \varepsilon, 1]$ allows this to be an equivalence relation.
+\end{definition}
+
+We shall assume for a while that $M \subseteq \R^N$. Now, given $N^n \subseteq M^m$, the normal bundle $n(N) = \{(x, v) \in N \times \R^N : v \perp T_x N, v \in T_x M\}$, a rank $m - n$ vector bundle over $N$. More canonically, we have $0 \longrightarrow TN \longrightarrow TM|_N \longrightarrow n(N) \longrightarrow 0$ exact.
+
+\begin{definition}
+    A framing of $N^n \subseteq M^m$ is a smooth assignment $v: x \in n \longrightarrow v(x) = (v_1(x), \dots, v_{m - n}(x))$ with $v_i(x) \in n_x(N)$. This is basically the choice of $m - n$ sections of $n(N)$, which witnesses a global trivialization $n(N) \cong N \times \R^{m - n}$. The pair $(N, v)$ is called a framed submanifold of $M$.
+\end{definition}
+
+\begin{definition}
+    $(N, v), (N', v')$ are framed cobordant if there exists a cobordism $X \subseteq M \times [0, 1]$ between $N$ and $N'$ and a framing $u$ of $X$ in $M \times [0, 1]$ which agrees with $v, v'$ on $N \times [0, \varepsilon]$, $N' \times [1 - \varepsilon, 1]$ respectively.
+\end{definition}
+
+\subsubsection{Main Results}
+
+Given a smooth map $f: M^m \longrightarrow S^n$, let $y \in S^n$ be a regular value.  Then $f^{-1}[y]$ is a submanifold of $M$ of codimension $n$. Pick an oriented basis $v = (v_1, \dots, v_n)$ of $T_y S^n$ and let $n(f^{-1}[y])$ be the normal bundle. We then have an isomorphism $f_*: n_x f^{-1}[y] \longrightarrow T_y S^n$ for all $x \in f^{-1}[y]$. This is clear by the exact sequence above. Hence, we can lift $(v_1, \dots, v_n)$ to $(w_1, \dots, w_n) \in n_x f^{-1}[y]$. We denote this by $f^{-1}[v] = \{(w_1, \dots, w_n)\}$.
+
+\begin{definition}
+    $(f^{-1}[y], f^{-1}[v])$ is a Pontryagin submanifold of $M$.
+\end{definition}
+
+\noindent\textbf{Theorems.}
+\emph{
+\begin{enumerate}[label=(\Alph*)]
+    \item Any two Pontrygain submnaifolds, defined with the same map $f$, are framed cobordant.
+    \item Two maps $f, g: M  \longrightarrow S^n$ are smoothly homotopic if and onlt if their Pontryagin submanifolds are framed cobordant.
+    \item Any compact, framed $(m - n)$ manifold $(N, w) \subseteq M$ can be realized as a Pontryagin submanifold.
+\end{enumerate}
+}
+
+Together, these theorems imply that $[M^m, S^n]$ is nothing more than the set of framed $(m - n)$ dimensional cobordism classes in $M$. For example, we compute $[S^m, S^n]$ for $m < n$. Indeed, $f^{-1}[y] = \emptyset$ for any regular value $y$. Hence, there is only one framed cobordism class, so $[S^m, S^n] = \{*\}$. The equidimensional case of $[M^n, S^n]$ will be returned to (Hopf Degree Theorem). Also, studying $[S^3, S^2]$ is therefore reduced to studying ``framed links" up to framed cobordism.

@@ -1,0 +1,44 @@
+\hypertarget{item:classification fc}{}
+We seek to prove the main theorems stated above. These can be wrapped up into the following. First of all, let $FC_{n}(M)$ be the set of framed codimension $n$ cobordism classes in $M$
+
+\begin{theorem}
+    The map $\Phi: [M, S^n] \longrightarrow FC_n(M)$ via $f \mapsto (f^{-1}[y], f^{-1}[v])$ is a well defined bijection. Here, $M$ is boundaryless, $y$ is some regular value of $f$ and $v$ is some frame of $T_y S^n$.
+\end{theorem}
+\begin{proof}
+    There are three steps to show, which are more or less the three theorems stated last time.
+    \begin{enumerate}[label = (\Alph*)]
+        \item $\Phi$ is well defined.
+        \item $\Phi$ is injective.
+        \item $\Phi$ is surjective.
+    \end{enumerate}
+    
+    We begin with showing (A). Indeed, if $v, v'$ are positively oriented bases at $y$ then $(f^{-1}[y], f^{-1}[v]), (f^{-1}[y], f^{-1}[v'])$ are framed cobordant. Indeed, there is a path $\gamma: v \to v'$ in $Fr(T_y S^n)$. Take therefore $X = f^{-1}[y] \times [0, 1]$ as our cobordism. The framing on the slice $X_t$ is, of course, given by $\gamma(t)$.
+    
+    Furthermore, if $f, g$ are smoothly homotopic and $y \in S^n$ is a regular value of both, then $f^{-1}[y]$ and $g^{-1}[y]$ are framed cobordant. We can suppress the framing as the above already showed independence of this choice. Indeed, let $F: M \times [0, 1] \longrightarrow S^n$ witness this homotopy. WLOG assume that $F_t = f$ and $F_{1 - t} = g$ for all $t < \varepsilon$. As $y$ is a regular value for both $f$ and $g$, we have that $F \transverse y$ near $\partial (M \times [0, 1])$ ($\varepsilon$ close). Then by the relative version of the transverse homotopy theorem, there exists some $G: M \times [0, 1] \longrightarrow S^n$ which is transverse to $y$ and $G_t = F_t$ for all $t < \varepsilon$. Then $G^{-1}[y]$ is our desired framed cobordism.
+    
+    Now, if $y, y'$ are regular values of $f$, we claim that $f^{-1}[y] \sim f^{-1}[y']$. Indeed, let $R$ be a rotation of $S^n$ such that $R(y') = y$. Then $(R \circ f)^{-1}[y] = f^{-1}[y']$. Of course, $R \circ f \sim f$, so by the above, we have $f^{-1}[y'] = (R \circ f)^{-1}[y] \sim f^{-1}[y]$.
+    
+    We now show (C). This is an important technique, due to Thom. Let $N \subseteq M$ be a compact, framed submanifold with no boundary and codimension $n$.
+    
+    \begin{lemma}
+        There exists a tubular neighborhood $U \supseteq N$ diffeomorphic to $N \times \R^n$.
+    \end{lemma}
+    \begin{proof}
+        Take a framing $(v_1, \dots, v_n)$ along $n$ (the $v_i$ are vector fields on $N$), which can be extended to $v_1, \dots, v_n$ on $M$ via some cutoff function/partition of unity nonsense. Let $\phi_t^X$ denote the time $t$ flow of a vector field $X$ on $M$. We therefore have a smooth map $N \times B_{\varepsilon}^n \longrightarrow M$ via $(x, t_1, \dots, t_n) \mapsto \phi_{t_n}^{v_n} \circ \dots \circ \phi_{t_1}^{v_1}(x)$. For small $\varepsilon$, this is an embedding.
+    \end{proof}
+    
+    \begin{lemma}
+        There exists a smooth map $\phi: B_1^n \longrightarrow S^n$ such that
+        \begin{align*}
+            \phi[\{1 - \delta \leq |x| \leq 1\}] &= S\\
+            \phi: \{|x| < 1 - \delta\} &\longrightarrow S^n - \{S\} \text{ a diffeomorphism}\\
+            \phi(0) &= N
+        \end{align*}
+        where $S$ and $N$ are the south and north poles respectively.
+    \end{lemma}
+    Let $\phi_\varepsilon$ be the corresponding map $B_\varepsilon^n \longrightarrow S^n$ in the second lemma. Define $f: M \longrightarrow S^n$ such that on $N \times B_\varepsilon^n$ it takes $(y, x) \mapsto \phi_\varepsilon(x)$ and on $M - (N \times B_\varepsilon^n)$ it collapses onto the south pole. Then $N = f^{-1}[n]$, $n$ the north pole.
+    
+    We conclude with (B). Let $f^{-1}[y] \sim g^{-1}[y]$. We claim $f \sim g$. Assume that $f, g$ are of the type constructed in (B). Let $X \subseteq M \times [0, 1]$ witness the framed cobordism. We construct our homotopy $F: M \times [0, 1] \longrightarrow S^n$ via a ``parametrized version of the previous proof".
+    
+    Indeed, take a tubular neighborhood $X \times B_\varepsilon^n \longrightarrow M \times [0, 1]$ extending the inclusion. Send the complement of $X \times B_\varepsilon^n$ to the south pole and send $(y, x) \in X \times B_\varepsilon^n$ to $\phi_\varepsilon(x)$.
+\end{proof}

@@ -1,0 +1,51 @@
+Recall that we defined the oriented intersection number $I(f, Z)$ by homotoping $f$ to some $g \transverse Z$ and computing the signed count $\#g^{-1}[Z]$. This required all manifolds involved to be oriented. Looking back at the proof of well definition of this fact, note that the boundary of a compact connected 1 manifold always has an even number of points. Hence, we can similarly define an invariant $I_2(f, Z) = |g^{-1}[Z]|$ mod 2.
+
+\subsection{Degree}
+
+    \begin{definition}
+        Suppose that $N$ is connected and $\dim M = \dim N$. Let $f: M \longrightarrow N$. We define the degree of $f$ to be $\deg(f) = I(f, pt)$ for some $pt \in N$ which we say has an orientation $+$. We are therefore also assuming that $M$ is compact and all manifolds are oriented and boundaryless.
+        
+        \noindent As a brief note, $f \transverse pt$ iff $pt$ is a regular value of $f$. Also, we have not shown that this is independent of the point chosen, but in due time we shall.
+    \end{definition}
+    
+    The degree of a map formalizes the notion of being $n$ to 1. Indeed, we are rigorously analyzing the ``size" of the fiber of a regular value, keeping in mind orientation. Furthermore, for this notion to not be horrible, it must be independent of the point chosen, so this suggests some kind of uniformity in the size of the fibers.
+    
+    \begin{example}
+        $S^1 \longrightarrow S^1$ via $\theta \mapsto n \theta$, or $z \mapsto z^n$. The degree of this map is $n$. 
+    \end{example}
+    
+    Regarding the well definition with respect to the point, suppose $p, q \in N$. Take a 1 parameter family of diffeomorphisms connecting $p$ and $q$ ($\phi_t$ orientation preserving diffeos such that $\phi_0 = id$ and $\phi_1(p) = q$). Pulling this back yields a homotopy of $f$, showing invariance.
+    
+    We had a definition using cohomology last quarter, and this turns out to be the same. Indeed, this was more or less proven in the notes last quarter, but just not using the sophisticated jargon of intersection theory.
+    
+    \begin{theorem}
+        Let $f: M \longrightarrow N$ between compact, oriented $n$-manifolds with $N$ connected. Suppose that $f$ can be extended to a thicc map $F: W \longrightarrow N$ such that $\partial W = M$, $W$ compact and oriented, and $\partial F = f$. Then $\deg(f) = 0$.
+    \end{theorem}
+    
+    \begin{proof}
+        Take some regular value $y$ of $f$ and let $F: W \longrightarrow N$ be such an extension. Using the transverse homotopy theorem relative to $\partial W$, we can say WLOG that $F \transverse y$. We have $\#(\partial F)^{-1}[y] = \pm \#\partial (F^{-1}[y])$. As discussed before, $\partial (F^{-1}[y])$ is the boundary of a compact 1 manifold and therefore comes in oppositely oriented pairs. Hence, this is 0, so $0 = \#(\partial F)^{-1}[y] = \# f^{-1}[y] = \deg(f)$.
+    \end{proof}
+    
+    \begin{example}
+        We now show an application of degree theory by proving the fundamental theorem of algebra. Indeed, let $p \in \C[x] - \C$ have no roots and without loss of generality let it be monic. Now let $R >> 0$ such that on $|z| = R$, $p(z)/|p(z)| \approx z^n/R^n$. Then $f(z) = p(z)/|p(z)| : \{|z| = R\} \longrightarrow S^1$ has degree $n > 0$. However, as $p$ has no roots, $f$ may be extended to a map on $\{|z| \leq R\}$ and therefore has degree 0 by the lemma, a contradiction.
+        
+       \noindent In fact, we can enhance the result to the following.
+    \end{example}
+    
+    \begin{theorem}\hypertarget{item:ftalg enhancement}{}
+    Let $W$ be a compact 2 submanifold of $\C$ with boundary. If $p: W \longrightarrow \C$ is a polynomial (or more generally, a holomorphic function) with no zeroes on $\partial W$, then the number of zeroes (counted with multiplicity) is $\deg\parens{\frac{p}{|p|}: \partial W \longrightarrow S^1}$.
+    \end{theorem}
+    
+    \begin{proof}
+        We recall the following facts from complex analysis. $z_0$ is a zero of $p$ iff $z - z_0 | p$ and $p$ has only finitely many roots in $W$.
+        
+        Now, let $z_1, \dots, z_k$ be the distinct roots of $p$, with respective multiplicity $a_i$. Now remove a small neighborhood $D_\varepsilon (z_i)$ around each $z_i$ and consider $\frac{p}{|p|}: W - \bigcup D_\varepsilon (z_i)$. Compute that on $\partial D_\varepsilon (z_i)$, $\deg\parens{\frac{p}{|p|}: \partial D_\varepsilon (z_i) \longrightarrow S^1} = a_i$. By the above theorem,
+        \[
+            \deg\parens{\frac{p}{|p|}: \partial(W - \bigcup D_\varepsilon (z_i)} = 0,
+        \]
+        as we have removed all of the roots by removing these disks. Furthermore,
+        \[
+            \deg(\partial(W - \bigcup D_\varepsilon (z_i)) = \deg(\partial W) - \sum \deg(\partial D_\varepsilon (z_i)),
+        \]
+        so $\deg(\partial W) = \sum a_i$, the number of roots of $p$ counted with multiplicity. Here, we were lazy with notation by calling things $\deg(\partial W)$, but it's clear what we mean.
+    \end{proof}
